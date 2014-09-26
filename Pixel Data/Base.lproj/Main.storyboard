@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="oBL-ID-k9d">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j0E-36-6cN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="srZ-Rg-Be4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qv1-o5-E6x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="qPW-8b-371"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-368" y="387"/>
+        </scene>
+        <!--Pixel Data-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +35,72 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5v2-pZ-YLI">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m1-4j-4Su">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <items>
+                                            <barButtonItem systemItem="add" id="OOt-pF-gky">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="vDO-sR-9lA"/>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6m1-4j-4Su" firstAttribute="leading" secondItem="5v2-pZ-YLI" secondAttribute="leading" id="5gO-Lc-XAn"/>
+                                    <constraint firstItem="6m1-4j-4Su" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="top" id="8kq-ut-4pd"/>
+                                    <constraint firstAttribute="trailing" secondItem="6m1-4j-4Su" secondAttribute="trailing" id="RIT-oB-fNm"/>
+                                    <constraint firstAttribute="bottom" secondItem="6m1-4j-4Su" secondAttribute="bottom" id="omj-Kd-IE9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="4Kh-8Z-scj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="Id7-is-9LI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="bottom" id="MmM-hr-HVx"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="QoB-J4-Ge6"/>
+                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jOu-Gy-rHE"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="sT7-MJ-MOf"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="tYd-Fc-rAZ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Pixel Data" id="s9T-ua-6lY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="YMW-9d-yR6">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="cameraPressed:" destination="vXZ-lx-hvc" id="LH3-Le-zxY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="WsX-le-RZ5">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="sharePressed:" destination="vXZ-lx-hvc" id="OeW-wB-cKf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
+                        <outlet property="scrollView" destination="lgm-xL-jFW" id="XA8-cV-8ey"/>
+                        <outlet property="toolBar" destination="6m1-4j-4Su" id="EVR-yv-4Vz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="329" y="387"/>
         </scene>
     </scenes>
 </document>
