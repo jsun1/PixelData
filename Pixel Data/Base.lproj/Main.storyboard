@@ -36,16 +36,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
+                                        <constraints>
+                                            <constraint firstAttribute="width" id="jBE-kj-1hV"/>
+                                            <constraint firstAttribute="height" id="ttN-YE-wpC"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="6wc-Ok-cIV"/>
+                                    <constraint firstAttribute="centerY" secondItem="oFa-pW-PVa" secondAttribute="centerY" constant="300" id="G8d-KP-DTy"/>
+                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" id="Hyc-iR-YLb"/>
+                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" id="O9t-zw-fqS"/>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="Rpr-60-pUK"/>
+                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" constant="600" id="WLD-a2-LBK"/>
+                                    <constraint firstAttribute="centerX" secondItem="oFa-pW-PVa" secondAttribute="centerX" constant="300" id="XtJ-Fa-bEW"/>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="bHa-8h-TpX"/>
+                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" constant="600" id="bTU-vi-4uZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" id="cHe-NR-xNl"/>
+                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" id="cSM-LJ-Wte"/>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="fyJ-np-UOi"/>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="rc3-Vg-GW5"/>
+                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="yc1-Nb-hOV"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="20" minY="20" maxX="0.0" maxY="44"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6wc-Ok-cIV"/>
+                                        <exclude reference="G8d-KP-DTy"/>
+                                        <exclude reference="Hyc-iR-YLb"/>
+                                        <exclude reference="O9t-zw-fqS"/>
+                                        <exclude reference="XtJ-Fa-bEW"/>
+                                        <exclude reference="cHe-NR-xNl"/>
+                                        <exclude reference="cSM-LJ-Wte"/>
+                                        <exclude reference="fyJ-np-UOi"/>
+                                        <exclude reference="rc3-Vg-GW5"/>
+                                        <exclude reference="yc1-Nb-hOV"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5v2-pZ-YLI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-pE-6nE">
+                                <rect key="frame" x="0.0" y="64" width="600" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="8Pa-Uv-4mq"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-jL-Cd8">
+                                <rect key="frame" x="0.0" y="64" width="20" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="9eU-mL-zaG"/>
+                                </constraints>
+                            </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5v2-pZ-YLI">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m1-4j-4Su">
@@ -61,7 +109,7 @@
                                         </items>
                                     </toolbar>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="6m1-4j-4Su" firstAttribute="leading" secondItem="5v2-pZ-YLI" secondAttribute="leading" id="5gO-Lc-XAn"/>
                                     <constraint firstItem="6m1-4j-4Su" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="top" id="8kq-ut-4pd"/>
@@ -73,13 +121,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="4Kh-8Z-scj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lEI-pE-6nE" secondAttribute="trailing" constant="-16" id="9aF-Ab-95j"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="9qp-wo-end"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="G6S-Nu-rbv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="Id7-is-9LI"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="bottom" id="MmM-hr-HVx"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="lEI-pE-6nE" secondAttribute="bottom" constant="-88" id="Ozb-1w-hlh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="QoB-J4-Ge6"/>
+                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="V0o-bs-gd5"/>
                             <constraint firstItem="5v2-pZ-YLI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jOu-Gy-rHE"/>
+                            <constraint firstItem="lEI-pE-6nE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kHZ-SW-r01"/>
+                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="O3I-jL-Cd8" secondAttribute="bottom" id="kMc-jU-PcT"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="sT7-MJ-MOf"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="tYd-Fc-rAZ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ozb-1w-hlh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Pixel Data" id="s9T-ua-6lY">
                         <barButtonItem key="leftBarButtonItem" systemItem="camera" id="YMW-9d-yR6">
@@ -96,7 +156,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageHeight" destination="ttN-YE-wpC" id="05a-8U-Zvz"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
+                        <outlet property="imageWidth" destination="jBE-kj-1hV" id="29l-po-2MV"/>
                         <outlet property="scrollView" destination="lgm-xL-jFW" id="XA8-cV-8ey"/>
                         <outlet property="toolBar" destination="6m1-4j-4Su" id="EVR-yv-4Vz"/>
                     </connections>

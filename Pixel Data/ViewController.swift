@@ -13,8 +13,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageWidth: NSLayoutConstraint!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
-    var image: UIImage?
+    var image: UIImage = UIImage.alloc()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +33,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         picker.dismissViewControllerAnimated(true, completion: nil)
+        self.scrollView.maximumZoomScale = 1
+        self.scrollView.minimumZoomScale = 1
+        self.scrollView.zoomScale = 1
+        
         self.image = image
         self.imageView.image = self.image
+        self.imageWidth.constant = self.image.size.width
+        self.imageHeight.constant = self.image.size.height
+        self.imageView.frame = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+//        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height)
+        
+        let widthRatio = ((self.scrollView.frame.size.width-self.scrollView.contentInset.left-self.scrollView.contentInset.right)/self.imageView.frame.size.width)
+        let heightRatio = ((self.scrollView.frame.size.height-self.scrollView.contentInset.top-self.scrollView.contentInset.bottom)/self.imageView.frame.size.height)
+        let minZoomScale = min(widthRatio, heightRatio)
+        self.scrollView.minimumZoomScale = minZoomScale
+        self.scrollView.maximumZoomScale = minZoomScale * 6
+        self.scrollView.setZoomScale(minZoomScale, animated: true)
+
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
