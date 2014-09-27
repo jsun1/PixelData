@@ -70,8 +70,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    
+
     @IBAction func sharePressed(sender: UIBarButtonItem) {
+        let imagePath: NSString = NSHomeDirectory().stringByAppendingPathComponent("screenshot.jpg")
+        UIImageJPEGRepresentation(self.image, 0.95)
+        let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
+        
+        
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
+        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+    
+
     }
 	
 	func updateColorPinLocation(touchPosition: CGPoint) {
