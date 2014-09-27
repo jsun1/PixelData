@@ -17,10 +17,13 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	
 	var colorPinView: ColorPinView!
 	
-//	required init(coder aDecoder: NSCoder) {
-//		super.init(coder: aDecoder)
-//		self.delegate = self
-//	}
+	required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+        
+        var doubleTap = UITapGestureRecognizer(target: self, action: Selector("doubleTap:"))
+        doubleTap.numberOfTapsRequired = 2;
+        self.addGestureRecognizer(doubleTap)
+	}
 	
 	func setImage(image: UIImage) {
 		self.maximumZoomScale = 1
