@@ -15,6 +15,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    @IBOutlet weak var topRuler: RulerView!
+    @IBOutlet weak var sideRuler: RulerView!
     
 	@IBOutlet weak var colorPinView: ColorPinView!
 	
@@ -35,6 +37,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageContainerView.setImage(image)
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        self.topRuler.zoomScale = scrollView.zoomScale
+        self.sideRuler.zoomScale = scrollView.zoomScale
+        self.topRuler.setNeedsDisplay()
+        self.sideRuler.setNeedsDisplay()
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        self.topRuler.zoomScale = scrollView.zoomScale
+        self.sideRuler.zoomScale = scrollView.zoomScale
+        self.topRuler.setNeedsDisplay()
+        self.sideRuler.setNeedsDisplay()
+    }
+    
     
     //MARK: IBActions
 
@@ -52,6 +69,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         UIImageJPEGRepresentation(self.image, 0.95)
         let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
         
+        var dic = UIDocumentInteractionController(URL: imageURL)
+        dic.delegate = self;
+        dic .presentOptionsMenuFromBarButtonItem(sender, animated: true)
         
         let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
         self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
