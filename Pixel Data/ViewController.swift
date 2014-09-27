@@ -28,7 +28,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageContainerView.imageHeight = imageHeight
 		
 		imageContainerView.delegate = self
-//        self.imageContainerView.contentInset = UIEdgeInsetsMake(self.imageContainerView.contentInset.top + self.topRuler.frame.size.height, self.sideRuler.frame.size.width, self.imageContainerView.contentInset.bottom, self.imageContainerView.contentInset.right)
     }
 
     //MARK: Delegates
