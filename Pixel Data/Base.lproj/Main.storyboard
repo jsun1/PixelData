@@ -36,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
@@ -165,10 +165,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="colorPinView" destination="c47-5v-p6s" id="48c-wu-hZb"/>
+                        <outlet property="imageContainerView" destination="lgm-xL-jFW" id="2mj-AT-cbM"/>
                         <outlet property="imageHeight" destination="ttN-YE-wpC" id="05a-8U-Zvz"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
                         <outlet property="imageWidth" destination="jBE-kj-1hV" id="29l-po-2MV"/>
-                        <outlet property="scrollView" destination="lgm-xL-jFW" id="XA8-cV-8ey"/>
                         <outlet property="toolBar" destination="6m1-4j-4Su" id="EVR-yv-4Vz"/>
                     </connections>
                 </viewController>
