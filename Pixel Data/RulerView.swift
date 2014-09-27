@@ -9,8 +9,9 @@
 import UIKit
 
 class RulerView: UIView {
-
-    var isHorizontal = true
+    
+    var hasImage = false
+    var zoomScale = CGFloat(1)
     
     var offset = CGPointMake(0, 0)
     var scale = 1
@@ -20,7 +21,9 @@ class RulerView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect)
     {
-        // Drawing code
+        if !hasImage {
+            self.zoomScale = 10;
+        }
     
         var begin = CGFloat(0)
         var end = CGFloat(300)
@@ -34,7 +37,10 @@ class RulerView: UIView {
             
         }
         
-        let widthOfTen = CGFloat(40) //want this to be between 20 and 40
+        let widthOfTen = 10 * zoomScale
+        
+        
+//        let widthOfTen = CGFloat(40) //want this to be between 20 and 40
         
         var darkColor = UIColor.darkGrayColor().CGColor
         var lightColor = UIColor.lightGrayColor().CGColor

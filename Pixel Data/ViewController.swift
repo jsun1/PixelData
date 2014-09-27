@@ -15,6 +15,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    @IBOutlet weak var topRuler: RulerView!
+    @IBOutlet weak var sideRuler: RulerView!
     
 	@IBOutlet weak var colorPinView: ColorPinView!
 	
@@ -50,13 +52,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let heightRatio = ((self.scrollView.frame.size.height-self.scrollView.contentInset.top-self.scrollView.contentInset.bottom)/self.imageView.frame.size.height)
         let minZoomScale = min(widthRatio, heightRatio)
         self.scrollView.minimumZoomScale = minZoomScale
-        self.scrollView.maximumZoomScale = minZoomScale * 6
+        self.scrollView.maximumZoomScale = minZoomScale * 10
         self.scrollView.setZoomScale(minZoomScale, animated: true)
-
+        
+//        self.topRuler.zoomScale = self.scrollView.zoomScale
+//        self.sideRuler.zoomScale = self.scrollView.zoomScale
+        self.topRuler.hasImage = true
+        self.sideRuler.hasImage = true
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        self.topRuler.zoomScale = scrollView.zoomScale
+        self.sideRuler.zoomScale = scrollView.zoomScale
+        self.topRuler.setNeedsDisplay()
+        self.sideRuler.setNeedsDisplay()
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        self.topRuler.zoomScale = scrollView.zoomScale
+        self.sideRuler.zoomScale = scrollView.zoomScale
+        self.topRuler.setNeedsDisplay()
+        self.sideRuler.setNeedsDisplay()
     }
     
     
