@@ -11,9 +11,17 @@ import UIKit
 class RulerView: UIView {
     
     var hasImage = false
-    var zoomScale = CGFloat(1)
+    var zoomScale : CGFloat = CGFloat(1) {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
-    var offset = CGPointMake(0, 0)
+    var offset : CGPoint = CGPointMake(0, 0) {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     var scale = 1
     
     
@@ -52,7 +60,7 @@ class RulerView: UIView {
         let context = UIGraphicsGetCurrentContext()
         if (self.frame.size.width > self.frame.size.height) {
             let half = self.frame.size.height/2
-            var x = CGFloat(0)
+            var x = -offset.x
             while (x < self.frame.size.width) {
                 CGContextSetLineWidth(context, 1.0);
                 CGContextSetStrokeColorWithColor(context, darkColor)
@@ -72,7 +80,7 @@ class RulerView: UIView {
             }
         } else {
             let half = self.frame.size.width/2
-            var y = CGFloat(0)
+            var y = -offset.y
             while (y < self.frame.size.height) {
                 CGContextSetLineWidth(context, 1.0);
                 CGContextSetStrokeColorWithColor(context, darkColor)

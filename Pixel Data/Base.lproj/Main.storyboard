@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -27,7 +27,7 @@
         <!--Pixel Data-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -36,8 +36,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="580" height="472"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
                                         <constraints>
@@ -64,7 +64,6 @@
                                     <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="rc3-Vg-GW5"/>
                                     <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="yc1-Nb-hOV"/>
                                 </constraints>
-                                <inset key="scrollIndicatorInsets" minX="20" minY="20" maxX="0.0" maxY="44"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="6wc-Ok-cIV"/>
@@ -83,15 +82,19 @@
                                     <outletCollection property="gestureRecognizers" destination="vg9-FO-VcX" appends="YES" id="O4q-Oc-nWW"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCO-Hb-OOv">
+                                <rect key="frame" x="0.0" y="64" width="20" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-pE-6nE" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="600" height="20"/>
+                                <rect key="frame" x="20" y="64" width="580" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="8Pa-Uv-4mq"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-jL-Cd8" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="20" height="492"/>
+                                <rect key="frame" x="0.0" y="84" width="20" height="472"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="9eU-mL-zaG"/>
@@ -128,24 +131,38 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="4Kh-8Z-scj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="20" id="4Kh-8Z-scj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lEI-pE-6nE" secondAttribute="trailing" constant="-16" id="9aF-Ab-95j"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="9qp-wo-end"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="9qp-wo-end"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="O3I-jL-Cd8" secondAttribute="trailing" id="DHY-Br-GvQ"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="lEI-pE-6nE" secondAttribute="bottom" id="Ddn-jF-NeD"/>
                             <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="G6S-Nu-rbv"/>
+                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="HBz-pN-ob0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="Id7-is-9LI"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="bottom" id="MmM-hr-HVx"/>
+                            <constraint firstItem="ZCO-Hb-OOv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="OFh-81-MJP"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="lEI-pE-6nE" secondAttribute="bottom" constant="-88" id="Ozb-1w-hlh"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="QoB-J4-Ge6"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="ZCO-Hb-OOv" secondAttribute="bottom" id="UGJ-BP-mhU"/>
                             <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="V0o-bs-gd5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="Vm5-ff-5oV"/>
+                            <constraint firstItem="ZCO-Hb-OOv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Vq7-rG-dqS"/>
+                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="ZTN-KU-6QG"/>
                             <constraint firstItem="5v2-pZ-YLI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jOu-Gy-rHE"/>
                             <constraint firstItem="lEI-pE-6nE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kHZ-SW-r01"/>
                             <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="O3I-jL-Cd8" secondAttribute="bottom" id="kMc-jU-PcT"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="sT7-MJ-MOf"/>
+                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="ZCO-Hb-OOv" secondAttribute="trailing" id="qeK-6K-J1w"/>
+                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="sT7-MJ-MOf"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="tYd-Fc-rAZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="V0o-bs-gd5"/>
+                                <exclude reference="4Kh-8Z-scj"/>
                                 <exclude reference="Ozb-1w-hlh"/>
+                                <exclude reference="sT7-MJ-MOf"/>
+                                <exclude reference="tYd-Fc-rAZ"/>
+                                <exclude reference="QoB-J4-Ge6"/>
                             </mask>
                         </variation>
                     </view>
