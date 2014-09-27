@@ -36,7 +36,7 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
 		let minZoomScale = min(widthRatio, heightRatio)
 		self.minimumZoomScale = minZoomScale
-		self.maximumZoomScale = minZoomScale * 6
+        self.maximumZoomScale = max(self.image.size.width * 10 / self.frame.size.width, minZoomScale * 10)
 		self.setZoomScale(minZoomScale, animated: true)
 	}
 	
