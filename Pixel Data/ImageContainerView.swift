@@ -54,8 +54,22 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		pinLocation.y -= colorPinView.height
 		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
 		
-		let positionInImage = CGPoint(x: floor((touchPosition.x + contentOffset.x) / zoomScale), y: floor((touchPosition.y + contentOffset.y) / zoomScale))
-		colorPinView.color = colorAtPosition(positionInImage).CGColor
+		let positionInImage = CGPoint(x: floor(touchPosition.x / zoomScale), y: floor(touchPosition.y / zoomScale))
+		colorPinView.color = colorAtPosition(positionInImage)
+		
+//		print("Offset: ")
+//		println(self.contentOffset)
+//		print("Image size: ")
+//		println(image.size)
+//		print("Zoom scale: ")
+//		println(self.zoomScale)
+//		print("Frame size: ")
+//		println(self.frame.size)
+//		print("Position: ")
+//		println(touchPosition)
+//		print("Position in Image: ")
+//		println(positionInImage)
+//		println()
 		
 		colorPinView.hidden = false
 	}
@@ -113,6 +127,4 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
             self.setZoomScale(self.minimumZoomScale, animated: true)
         }
     }
-    
-    
 }

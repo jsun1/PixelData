@@ -94,9 +94,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		}
 		
 		if(sender.state == .Began) {
-			imageContainerView.showColorPin(sender.locationInView(view))
+			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
 		} else if(sender.state == .Changed) {
-			imageContainerView.showColorPin(sender.locationInView(view))
+			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
 		} else if(sender.state == .Ended) {
 			imageContainerView.hideColorPin()
 		}
