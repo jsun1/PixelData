@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate {
     
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -76,9 +76,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         UIImageJPEGRepresentation(self.image, 0.95)
         let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
         
+        var dic = UIDocumentInteractionController(URL: imageURL)
+        dic.delegate = self;
+        dic .presentOptionsMenuFromBarButtonItem(sender, animated: true)
         
-        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
-        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+//        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
+//        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
     
 
     }
