@@ -34,6 +34,10 @@ class ColorPinView: UIView {
 		CGContextFillPath(contextRef)
 		
 		CGContextAddEllipseInRect(contextRef, CGRect(x: 5, y: 5, width: 2 * circleRadius, height: 2 * circleRadius))
+		CGContextSetFillColorWithColor(contextRef, UIColor.whiteColor().CGColor)
+		CGContextFillPath(contextRef)
+		
+		CGContextAddEllipseInRect(contextRef, CGRect(x: 5, y: 5, width: 2 * circleRadius, height: 2 * circleRadius))
 		CGContextSetFillColorWithColor(contextRef, color)
 		CGContextFillPath(contextRef)
 	}
