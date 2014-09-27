@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -47,6 +47,7 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="6wc-Ok-cIV"/>
                                     <constraint firstAttribute="centerY" secondItem="oFa-pW-PVa" secondAttribute="centerY" constant="300" id="G8d-KP-DTy"/>
@@ -78,6 +79,9 @@
                                         <exclude reference="yc1-Nb-hOV"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vg9-FO-VcX" appends="YES" id="O4q-Oc-nWW"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-pE-6nE">
                                 <rect key="frame" x="0.0" y="64" width="600" height="20"/>
@@ -116,6 +120,10 @@
                                     <constraint firstAttribute="trailing" secondItem="6m1-4j-4Su" secondAttribute="trailing" id="RIT-oB-fNm"/>
                                     <constraint firstAttribute="bottom" secondItem="6m1-4j-4Su" secondAttribute="bottom" id="omj-Kd-IE9"/>
                                 </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c47-5v-p6s" customClass="ColorPinView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="275" y="270" width="50" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -156,6 +164,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="colorPinView" destination="c47-5v-p6s" id="48c-wu-hZb"/>
                         <outlet property="imageHeight" destination="ttN-YE-wpC" id="05a-8U-Zvz"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
                         <outlet property="imageWidth" destination="jBE-kj-1hV" id="29l-po-2MV"/>
@@ -164,6 +173,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vg9-FO-VcX">
+                    <connections>
+                        <action selector="longPressureRecognized:" destination="vXZ-lx-hvc" id="0FA-2O-jZ8"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="329" y="387"/>
         </scene>

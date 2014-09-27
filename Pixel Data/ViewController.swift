@@ -16,6 +16,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
+	@IBOutlet weak var colorPinView: ColorPinView!
+	
     var image: UIImage = UIImage.alloc()
     
     override func viewDidLoad() {
@@ -71,6 +73,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     @IBAction func sharePressed(sender: UIBarButtonItem) {
     }
+	
+	func updateColorPinLocation(touchPosition: CGPoint) {
+		var pinLocation = touchPosition
+		pinLocation.x -= colorPinView.width / 2
+		pinLocation.y -= colorPinView.height
+		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
+	}
+	
+	@IBAction func longPressureRecognized(sender: UILongPressGestureRecognizer) {
+		if(sender.state == .Began) {
+			colorPinView.color = UIColor.blueColor().CGColor
+			
+			updateColorPinLocation(sender.locationInView(view))
+			
+			colorPinView.hidden = false
+		} else if(sender.state == .Changed) {
+			updateColorPinLocation(sender.locationInView(view))
+		} else if(sender.state == .Ended) {
+			colorPinView.hidden = true
+		}
+	}
+	
 
 }
 

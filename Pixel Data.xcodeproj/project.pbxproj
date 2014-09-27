@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ADC21719D648860093C1CD /* ColorPinView.swift */; };
 		9D95114219D4E688004B6709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D95114119D4E688004B6709 /* AppDelegate.swift */; };
 		9D95114419D4E688004B6709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D95114319D4E688004B6709 /* ViewController.swift */; };
 		9D95114719D4E688004B6709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D95114519D4E688004B6709 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41ADC21719D648860093C1CD /* ColorPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPinView.swift; sourceTree = "<group>"; };
 		9D95113C19D4E688004B6709 /* Pixel Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixel Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D95114019D4E688004B6709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D95114119D4E688004B6709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				9D95114819D4E688004B6709 /* Images.xcassets */,
 				9D95114A19D4E688004B6709 /* LaunchScreen.xib */,
 				9D95113F19D4E688004B6709 /* Supporting Files */,
+				41ADC21719D648860093C1CD /* ColorPinView.swift */,
 			);
 			path = "Pixel Data";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D95114419D4E688004B6709 /* ViewController.swift in Sources */,
+				41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */,
 				9D95114219D4E688004B6709 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +409,7 @@
 				9D95115D19D4E688004B6709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D95115E19D4E688004B6709 /* Build configuration list for PBXNativeTarget "Pixel DataTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				9D95116019D4E688004B6709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
