@@ -38,7 +38,7 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
 		let minZoomScale = min(widthRatio, heightRatio)
 		self.minimumZoomScale = minZoomScale
-		self.maximumZoomScale = minZoomScale * 6
+        self.maximumZoomScale = max(self.image.size.width * 10 / self.frame.size.width, minZoomScale * 10)
 		self.setZoomScale(minZoomScale, animated: true)
 	}
 	
@@ -79,4 +79,37 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 
 		return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: CGFloat(alpha)/255)
 	}
+    
+    func doubleTap(gesture : UITapGestureRecognizer) {
+        if self.zoomScale <= self.minimumZoomScale {
+            //Normalize current content size back to content scale of 1.0f
+            var contentSize = CGSizeZero
+            contentSize.width = self.contentSize.width / self.zoomScale
+            contentSize.height = self.contentSize.height / self.zoomScale
+            
+            //translate the zoom point to relative to the content rect
+            var zoomPoint = gesture.locationInView(gesture.view)
+            zoomPoint.x = (zoomPoint.x / self.bounds.size.width) * contentSize.width
+            zoomPoint.y = (zoomPoint.y / self.bounds.size.height) * contentSize.height
+            
+            //derive the size of the region to zoom to
+            var zoomSize = CGSizeZero
+            zoomSize.width = self.bounds.size.width / (self.minimumZoomScale * 4)
+            zoomSize.height = self.bounds.size.height / (self.minimumZoomScale * 4)
+            
+            //offset the zoom rect so the actual zoom point is in the middle of the rectangle
+            var zoomRect = CGRectZero
+            zoomRect.origin.x = zoomPoint.x - zoomSize.width / 2.0
+            zoomRect.origin.y = zoomPoint.y - zoomSize.height / 2.0
+            zoomRect.size.width = zoomSize.width;
+            zoomRect.size.height = zoomSize.height;
+            
+            //apply the resize
+            self.zoomToRect(zoomRect, animated: true)
+        } else {
+            self.setZoomScale(self.minimumZoomScale, animated: true)
+        }
+    }
+    
+    
 }

@@ -37,8 +37,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         picker.dismissViewControllerAnimated(true, completion: nil)
 		imageContainerView.setImage(image)
 		
-		//        self.topRuler.zoomScale = self.scrollView.zoomScale
-		//        self.sideRuler.zoomScale = self.scrollView.zoomScale
 		self.topRuler.hasImage = true
 		self.sideRuler.hasImage = true
     }
@@ -50,18 +48,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         self.topRuler.zoomScale = scrollView.zoomScale
         self.sideRuler.zoomScale = scrollView.zoomScale
-        self.topRuler.setNeedsDisplay()
-        self.sideRuler.setNeedsDisplay()
+        self.topRuler.offset = scrollView.contentOffset
+        self.sideRuler.offset = scrollView.contentOffset
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         self.topRuler.zoomScale = scrollView.zoomScale
         self.sideRuler.zoomScale = scrollView.zoomScale
-        self.topRuler.setNeedsDisplay()
-        self.sideRuler.setNeedsDisplay()
+        self.topRuler.offset = scrollView.contentOffset
+        self.sideRuler.offset = scrollView.contentOffset
     }
     
     
