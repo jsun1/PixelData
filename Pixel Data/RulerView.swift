@@ -50,12 +50,17 @@ class RulerView: UIView {
         
 //        let widthOfTen = CGFloat(40) //want this to be between 20 and 40
         
+        var displayText = false
         var darkColor = UIColor.darkGrayColor().CGColor
         var lightColor = UIColor.lightGrayColor().CGColor
         if widthOfTen > 40 {
             darkColor = UIColor.blackColor().CGColor
             lightColor = UIColor.darkGrayColor().CGColor
+            
+            displayText = true
         }
+        var pixelCount = 0
+        let attribs = [NSForegroundColorAttributeName : UIColor.grayColor(), NSFontAttributeName : UIFont.systemFontOfSize(10)]
         
         let context = UIGraphicsGetCurrentContext()
         if (self.frame.size.width > self.frame.size.height) {
@@ -76,6 +81,11 @@ class RulerView: UIView {
                     }
                     CGContextAddLineToPoint(context, x + i * (widthOfTen / 10), self.frame.size.height)
                 }
+                if displayText {
+                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
+                    text.drawAtPoint(CGPointMake(x, 0))
+                }
+                pixelCount += 10
                 x += widthOfTen
             }
         } else {
@@ -96,8 +106,14 @@ class RulerView: UIView {
                     }
                     CGContextAddLineToPoint(context, self.frame.size.width, y + i * (widthOfTen / 10))
                 }
+                if displayText {
+                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
+                    text.drawAtPoint(CGPointMake(0, y))
+                }
+                pixelCount += 10
                 y += widthOfTen
             }
+            
         }
         CGContextStrokePath(context)
         
