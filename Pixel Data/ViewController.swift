@@ -19,8 +19,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var sideRuler: RulerView!
     
 	@IBOutlet weak var colorPinView: ColorPinView!
-	
-    var image: UIImage = UIImage.alloc()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +75,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     @IBAction func sharePressed(sender: UIBarButtonItem) {
         let imagePath: NSString = NSHomeDirectory().stringByAppendingPathComponent("screenshot.jpg")
-        UIImageJPEGRepresentation(self.image, 0.95)
+        UIImageJPEGRepresentation(imageContainerView.image, 0.95)
         let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
         
         var dic = UIDocumentInteractionController(URL: imageURL)
@@ -98,13 +96,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func longPressureRecognized(sender: UILongPressGestureRecognizer) {
+		if imageContainerView.image.size.width == 0 {
+			return;
+		}
+		
 		if(sender.state == .Began) {
-			colorPinView.color = UIColor.blueColor().CGColor
+			colorPinView.color = imageContainerView.colorAtPosition(sender.locationInView(view)).CGColor
 			
 			updateColorPinLocation(sender.locationInView(view))
 			
 			colorPinView.hidden = false
 		} else if(sender.state == .Changed) {
+			colorPinView.color = imageContainerView.colorAtPosition(sender.locationInView(view)).CGColor
+			
 			updateColorPinLocation(sender.locationInView(view))
 		} else if(sender.state == .Ended) {
 			colorPinView.hidden = true

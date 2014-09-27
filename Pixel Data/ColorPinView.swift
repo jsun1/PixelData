@@ -14,7 +14,11 @@ class ColorPinView: UIView {
 	
 	let circleRadius = 20.0 as CGFloat
 	
-	var color = UIColor.whiteColor().CGColor
+	var color: CGColorRef = UIColor.whiteColor().CGColor {
+		didSet {
+			self.setNeedsDisplay()
+		}
+	}
 	
 	override func drawRect(rect: CGRect) {
 		let contextRef = UIGraphicsGetCurrentContext()
