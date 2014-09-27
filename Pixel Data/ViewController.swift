@@ -26,6 +26,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageContainerView.imageView = imageView
 		imageContainerView.imageWidth = imageWidth
 		imageContainerView.imageHeight = imageHeight
+		imageContainerView.colorPinView = colorPinView
 		
 		imageContainerView.delegate = self
     }
@@ -90,30 +91,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     }
 	
-	func updateColorPinLocation(touchPosition: CGPoint) {
-		var pinLocation = touchPosition
-		pinLocation.x -= colorPinView.width / 2
-		pinLocation.y -= colorPinView.height
-		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
-	}
-	
 	@IBAction func longPressureRecognized(sender: UILongPressGestureRecognizer) {
 		if imageContainerView.image.size.width == 0 {
 			return;
 		}
 		
 		if(sender.state == .Began) {
-			colorPinView.color = imageContainerView.colorAtPosition(sender.locationInView(view)).CGColor
-			
-			updateColorPinLocation(sender.locationInView(view))
-			
-			colorPinView.hidden = false
+			imageContainerView.showColorPin(sender.locationInView(view))
 		} else if(sender.state == .Changed) {
-			colorPinView.color = imageContainerView.colorAtPosition(sender.locationInView(view)).CGColor
-			
-			updateColorPinLocation(sender.locationInView(view))
+			imageContainerView.showColorPin(sender.locationInView(view))
 		} else if(sender.state == .Ended) {
-			colorPinView.hidden = true
+			imageContainerView.hideColorPin()
 		}
 	}
 	

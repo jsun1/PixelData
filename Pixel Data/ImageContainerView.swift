@@ -15,6 +15,8 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	var imageWidth: NSLayoutConstraint!
 	var imageHeight: NSLayoutConstraint!
 	
+	var colorPinView: ColorPinView!
+	
 //	required init(coder aDecoder: NSCoder) {
 //		super.init(coder: aDecoder)
 //		self.delegate = self
@@ -41,28 +43,34 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	}
 	
 	
-	func colorAtPosition(position: CGPoint) -> UIColor {
+	//MARK: Color pin
+	
+	func showColorPin(touchPosition: CGPoint) {
+		var pinLocation = touchPosition
+		pinLocation.x -= colorPinView.width / 2
+		pinLocation.y -= colorPinView.height
+		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
 		
-		let contentOffset = self.contentOffset
-		let imageSize = image.size
-		let zoomScale = self.zoomScale
+		let positionInImage = CGPoint(x: floor((touchPosition.x + contentOffset.x) / zoomScale), y: floor((touchPosition.y + contentOffset.y) / zoomScale))
+		colorPinView.color = colorAtPosition(positionInImage).CGColor
 		
-		print("Offset: ")
-		println(self.contentOffset)
-		print("Image size: ")
-		println(image.size)
-		print("Zoom scale: ")
-		println(self.zoomScale)
-		print("Frame size: ")
-		println(self.frame.size)
-		print("Position: ")
-		println(position)
-		println()
+		colorPinView.hidden = false
+	}
+	
+	func hideColorPin() {
+		colorPinView.hidden = true
+	}
+	
+	func colorAtPosition(positionInImage: CGPoint) -> UIColor {
+		if(positionInImage.x < 0 || positionInImage.x > image.size.width
+			|| positionInImage.y < 0 || positionInImage.y > image.size.height) {
+				return UIColor.whiteColor()
+		}
 		
 		let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
 		let data = CFDataGetBytePtr(pixelData);
 		
-		let pixelInfo = Int(((image.size.width * position.y) + position.x) * 4); // The image is png
+		let pixelInfo = Int(((image.size.width * positionInImage.y) + positionInImage.x) * 4); // The image is png
 		
 		let red = data[pixelInfo];
 		let green = data[(pixelInfo + 1)];
