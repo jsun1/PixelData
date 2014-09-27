@@ -106,8 +106,14 @@ class RulerView: UIView {
                     }
                     CGContextAddLineToPoint(context, self.frame.size.width, y + i * (widthOfTen / 10))
                 }
+                if displayText {
+                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
+                    text.drawAtPoint(CGPointMake(0, y))
+                }
+                pixelCount += 10
                 y += widthOfTen
             }
+            
         }
         CGContextStrokePath(context)
         
