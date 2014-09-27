@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate {
+	
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageContainerView: ImageContainerView!
     @IBOutlet weak var imageView: UIImageView!
@@ -28,6 +28,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageContainerView.imageView = imageView
 		imageContainerView.imageWidth = imageWidth
 		imageContainerView.imageHeight = imageHeight
+		
+		imageContainerView.delegate = self
     }
 
     //MARK: Delegates
@@ -35,8 +37,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         picker.dismissViewControllerAnimated(true, completion: nil)
 		imageContainerView.setImage(image)
+		
+		//        self.topRuler.zoomScale = self.scrollView.zoomScale
+		//        self.sideRuler.zoomScale = self.scrollView.zoomScale
+		self.topRuler.hasImage = true
+		self.sideRuler.hasImage = true
     }
-    
+	
+	
+	
+	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+		return imageView
+	}
+	
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         self.topRuler.zoomScale = scrollView.zoomScale
@@ -73,8 +86,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         dic.delegate = self;
         dic .presentOptionsMenuFromBarButtonItem(sender, animated: true)
         
-        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
-        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+//        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
+//        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+    
+
     }
 	
 	func updateColorPinLocation(touchPosition: CGPoint) {

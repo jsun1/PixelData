@@ -15,10 +15,10 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	var imageWidth: NSLayoutConstraint!
 	var imageHeight: NSLayoutConstraint!
 	
-	required init(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		self.delegate = self
-	}
+//	required init(coder aDecoder: NSCoder) {
+//		super.init(coder: aDecoder)
+//		self.delegate = self
+//	}
 	
 	func setImage(image: UIImage) {
 		self.maximumZoomScale = 1
@@ -38,10 +38,6 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		self.minimumZoomScale = minZoomScale
 		self.maximumZoomScale = minZoomScale * 6
 		self.setZoomScale(minZoomScale, animated: true)
-	}
-	
-	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-		return imageView
 	}
 	
 //	func colorAtLocation(location: CGPoint) -> UIColor? {
