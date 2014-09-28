@@ -8,20 +8,16 @@
 
 import UIKit
 
-class MeasurementView: UIView {
+class MeasurementView: OverlayView {
 	// TODO class variable?
 	private let externalBoundsX = 40.0 as CGFloat
 	private let externalBoundsY = 20.0 as CGFloat
-	
-	// TODO class variable?
-	private var traceColor = UIColor.blackColor()
-	private var fontColor = UIColor.whiteColor()
 	
 	// point1InImage is always the point with the smaller x value
 	private var point1InImage: CGPoint?
 	private var point2InImage: CGPoint?
 	
-	var zoomScale: CGFloat = CGFloat() {
+	override var zoomScale: CGFloat {
 		didSet {
 			if point1InImage == nil || point2InImage == nil {
 				return
@@ -61,13 +57,6 @@ class MeasurementView: UIView {
 	}
 	
 	func initMeasurementView() {
-		self.backgroundColor = UIColor.clearColor()
-	}
-	
-	func setColors(#traceColor: UIColor, fontColor:UIColor) {
-		self.traceColor = traceColor
-		self.fontColor = fontColor
-		setNeedsDisplay()
 	}
 	
 	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat) {

@@ -8,20 +8,16 @@
 
 import UIKit
 
-class ColorPinView: UIView {
+class ColorPinView: OverlayView {
 	private let frameWidth = 120.0 as CGFloat
 	private let frameHeight = 80.0 as CGFloat
 	
 	// TODO class variable?
 	private let circleRadius = 20.0 as CGFloat
 	
-	// TODO class variable?
-	private var traceColor = UIColor.blackColor()
-	private var fontColor = UIColor.whiteColor()
-	
 	private var pointInImage: CGPoint?
 	
-	var zoomScale: CGFloat = CGFloat() {
+	override var zoomScale: CGFloat {
 		didSet {
 			if pointInImage == nil {
 				return
@@ -34,7 +30,7 @@ class ColorPinView: UIView {
 		}
 	}
 	
-	var color: UIColor = UIColor.whiteColor() {
+	var pixelColor: UIColor = UIColor.whiteColor() {
 		didSet {
 			self.setNeedsDisplay()
 		}
@@ -56,7 +52,6 @@ class ColorPinView: UIView {
 	}
 	
 	func initPinView() {
-		self.backgroundColor = UIColor.clearColor()
 	}
 	
 	func setPoint(point: CGPoint, zoomScale: CGFloat) {
@@ -66,12 +61,6 @@ class ColorPinView: UIView {
 	
 	func getPointInImage() -> CGPoint? {
 		return pointInImage
-	}
-	
-	func setColors(#traceColor: UIColor, fontColor:UIColor) {
-		self.traceColor = traceColor
-		self.fontColor = fontColor
-		setNeedsDisplay()
 	}
 	
 	override func drawRect(rect: CGRect) {
@@ -118,13 +107,13 @@ class ColorPinView: UIView {
 		
 		// the actual color
 		CGContextAddEllipseInRect(contextRef, CGRect(x: 5, y: 5, width: 2 * circleRadius, height: 2 * circleRadius))
-		CGContextSetFillColorWithColor(contextRef, color.CGColor)
+		CGContextSetFillColorWithColor(contextRef, pixelColor.CGColor)
 		CGContextFillPath(contextRef)
 		
 		// write the color elements
 		var rgba = [CGFloat](count: 4, repeatedValue: 0.0)
 		
-		color.getRed(&rgba[0], green: &rgba[1], blue: &rgba[2], alpha: &rgba[3])
+		pixelColor.getRed(&rgba[0], green: &rgba[1], blue: &rgba[2], alpha: &rgba[3])
 		
 		let intVal = String(format: "R:%03.0f, G:%03.0f\nB:%03.0f, A:%03.0f", Float(rgba[0]) * 255.99999, Float(rgba[1]) * 255.99999, Float(rgba[2]) * 255.99999, Float(rgba[3]) * 255.99999)
 		let hexVal = String(format: "#%02x%02x%02x%02x", Int(Float(rgba[3]) * 255.99999), Int(Float(rgba[0]) * 255.99999), Int(Float(rgba[1]) * 255.99999), Int(Float(rgba[2]) * 255.99999))

@@ -135,5 +135,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			imageContainerView.mode = Mode.Annotation
 		}
 	}
+	
+	@IBAction func toggleEditMode(sender: UIBarButtonItem) {
+		if sender.style == .Done {
+			sender.style = .Plain
+			imageContainerView.editMode = false
+		} else {
+			sender.style = .Done
+			imageContainerView.editMode = true
+		}
+	}
 }
 
