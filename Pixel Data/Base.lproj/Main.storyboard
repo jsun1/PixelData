@@ -26,22 +26,6 @@
         <!--Pixel Data-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" numberOfTouchesRequired="2" id="T2G-fi-FC4">
-                    <connections>
-                        <action selector="longPress2FingersRecognized:" destination="vXZ-lx-hvc" id="jlF-la-oma"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vg9-FO-VcX">
-                    <connections>
-                        <action selector="longPressRecognized:" destination="vXZ-lx-hvc" id="Rfn-6M-OBR"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="XfD-ho-4w9">
-                    <connections>
-                        <action selector="doubleTapOnImageContainerRecognized:" destination="vXZ-lx-hvc" id="5dx-EM-stB"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -150,6 +134,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraButton" destination="YMW-9d-yR6" id="qGe-2P-ye6"/>
                         <outlet property="gridView" destination="abk-gt-261" id="O9T-II-V13"/>
                         <outlet property="imageContainerView" destination="lgm-xL-jFW" id="2mj-AT-cbM"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
@@ -158,6 +143,22 @@
                         <outlet property="topRuler" destination="lEI-pE-6nE" id="0Xi-WB-g5b"/>
                     </connections>
                 </viewController>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" numberOfTouchesRequired="2" id="T2G-fi-FC4">
+                    <connections>
+                        <action selector="longPress2FingersRecognized:" destination="vXZ-lx-hvc" id="jlF-la-oma"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vg9-FO-VcX">
+                    <connections>
+                        <action selector="longPressRecognized:" destination="vXZ-lx-hvc" id="Rfn-6M-OBR"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="XfD-ho-4w9">
+                    <connections>
+                        <action selector="doubleTapOnImageContainerRecognized:" destination="vXZ-lx-hvc" id="5dx-EM-stB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="421.12" y="660.48000000000002"/>
         </scene>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate, UIPopoverControllerDelegate {
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageContainerView: ImageContainerView!
     @IBOutlet weak var imageView: UIImageView!
@@ -17,6 +17,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
     @IBOutlet weak var gridView: GridView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
+    var popover:UIPopoverController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +33,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.imageView.layer.magnificationFilter = kCAFilterNearest
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+            self.cameraPressed(self.cameraButton)
+        }
+    }
+    
     //MARK: Delegates
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.popover!.dismissPopoverAnimated(true)
         picker.dismissViewControllerAnimated(true, completion: nil)
 		imageContainerView.setImage(image)
 		
@@ -42,6 +53,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.gridView.size = image.size
     }
 	
+    func popoverControllerDidDismissPopover(popoverController: UIPopoverController) {
+        self.popover = nil
+    }
 	
 	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
 		return imageView
@@ -73,7 +87,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
         imagePicker.allowsEditing = false
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        if (UIDevice.currentDevice().userInterfaceIdiom != .Pad) {
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        } else {
+            if ((self.popover) != nil) {
+                if (self.popover!.popoverVisible) {
+                    self.popover!.dismissPopoverAnimated(true)
+                    self.popover = nil;
+                    return;
+                }
+                self.popover = nil;
+            }
+            var newPopover = UIPopoverController(contentViewController: imagePicker)
+            newPopover.delegate = self;
+            self.popover = newPopover;
+            self.popover!.presentPopoverFromBarButtonItem(sender!, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+        }
     }
     
 
