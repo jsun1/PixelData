@@ -45,7 +45,14 @@ class RulerView: UIView {
             
         }
         
-        let widthOfTen = 10 * zoomScale
+        var widthOfTen = 10 * zoomScale
+        
+        var multiplier = 1
+        while widthOfTen < 40 {
+            multiplier += 1
+            widthOfTen = 10 * zoomScale * CGFloat(multiplier)
+        }
+        
         
         
 //        let widthOfTen = CGFloat(40) //want this to be between 20 and 40
@@ -85,9 +92,10 @@ class RulerView: UIView {
                     let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
                     text.drawAtPoint(CGPointMake(x, 0))
                 }
-                pixelCount += 10
+                pixelCount += 10 * multiplier
                 x += widthOfTen
             }
+            CGContextStrokePath(context)
         } else {
             let half = self.frame.size.width/2
             var y = -offset.y
@@ -106,16 +114,26 @@ class RulerView: UIView {
                     }
                     CGContextAddLineToPoint(context, self.frame.size.width, y + i * (widthOfTen / 10))
                 }
-                if displayText {
-                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
-                    text.drawAtPoint(CGPointMake(0, y))
-                }
-                pixelCount += 10
+//                if displayText {
+//                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
+//                    text.drawAtPoint(CGPointMake(0, y))
+//                }
+//                pixelCount += 10 * multiplier
                 y += widthOfTen
+            }
+            CGContextStrokePath(context)
+            if displayText {
+                CGContextRotateCTM (context, CGFloat(-M_PI_2))
+                y = -offset.y
+                while (y < self.frame.size.height) {
+                    let text = NSAttributedString(string : String(pixelCount), attributes: attribs)
+                    text.drawAtPoint(CGPointMake(-y, 0))
+                    pixelCount += 10 * multiplier
+                    y += widthOfTen
+                }
             }
             
         }
-        CGContextStrokePath(context)
         
         
     }
