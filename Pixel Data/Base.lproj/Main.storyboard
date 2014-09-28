@@ -110,12 +110,6 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m1-4j-4Su">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <items>
-                                            <barButtonItem systemItem="add" id="OOt-pF-gky">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            </barButtonItem>
-                                            <barButtonItem image="ColorPickerImage" id="KUG-TT-aOM">
-                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="vDO-sR-9lA"/>
                                         </items>
                                     </toolbar>
@@ -167,13 +161,13 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Pixel Data" id="s9T-ua-6lY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="YMW-9d-yR6">
+                        <barButtonItem key="leftBarButtonItem" image="PhotoButton" id="YMW-9d-yR6">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cameraPressed:" destination="vXZ-lx-hvc" id="LH3-Le-zxY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="WsX-le-RZ5">
+                        <barButtonItem key="rightBarButtonItem" image="ShareButton" id="WsX-le-RZ5">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="sharePressed:" destination="vXZ-lx-hvc" id="OeW-wB-cKf"/>
@@ -202,6 +196,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ColorPickerImage" width="42" height="42"/>
+        <image name="PhotoButton" width="24" height="24"/>
+        <image name="ShareButton" width="24" height="24"/>
     </resources>
 </document>
