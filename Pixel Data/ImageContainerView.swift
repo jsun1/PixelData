@@ -145,24 +145,30 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	func setImage(image: UIImage) {
 		clearWorkspace()
 		
-		maximumZoomScale = 1
-		minimumZoomScale = 1
-		zoomScale = 1
-		
 		self.image = image
 		imageView.image = self.image!
-		imageView.frame.size.width = self.image!.size.width
-		imageView.frame.size.height = self.image!.size.height
-		imageView.frame = CGRectMake(0, 0, self.image!.size.width, self.image!.size.height);
-		//        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height)
-		
-		let widthRatio = ((self.frame.size.width-self.contentInset.left-self.contentInset.right)/self.imageView.frame.size.width)
-		let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
-		let minZoomScale = min(widthRatio, heightRatio)
-		minimumZoomScale = minZoomScale
-        maximumZoomScale = max(self.image!.size.width * 10 / self.frame.size.width, minZoomScale * 10)
-		setZoomScale(minZoomScale, animated: true)
+
+		reZoom()
 	}
+    
+    func reZoom() {
+        let zoomIsMin = self.minimumZoomScale == self.zoomScale;
+        let prevZoomScale = self.zoomScale;
+        maximumZoomScale = 1
+        minimumZoomScale = 1
+        zoomScale = 1
+        self.imageView.frame = CGRectMake(0, 0, self.image!.size.width, self.image!.size.height);
+        let widthRatio = ((self.frame.size.width-self.contentInset.left-self.contentInset.right)/self.imageView.frame.size.width)
+        let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
+        let minZoomScale = min(widthRatio, heightRatio)
+        minimumZoomScale = minZoomScale
+        maximumZoomScale = max(self.image!.size.width * 10 / self.frame.size.width, minZoomScale * 10)
+        if (!zoomIsMin) {
+            setZoomScale(prevZoomScale, animated: true)
+        } else {
+            setZoomScale(minZoomScale, animated: true)
+        }
+    }
 	
 	//MARK: Measurement view
 	

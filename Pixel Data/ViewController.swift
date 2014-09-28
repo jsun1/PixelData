@@ -40,12 +40,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        if (self.gridView.hasImage) {
+            self.imageContainerView.reZoom()
+        }
+    }
+    
+    
     //MARK: Delegates
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         self.popover!.dismissPopoverAnimated(true)
         picker.dismissViewControllerAnimated(true, completion: nil)
-		imageContainerView.setImage(image)
+		self.imageContainerView.setImage(image)
 		
 		self.topRuler.hasImage = true
 		self.sideRuler.hasImage = true
