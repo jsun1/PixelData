@@ -78,17 +78,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 
     @IBAction func sharePressed(sender: UIBarButtonItem) {
-        let imagePath: NSString = NSHomeDirectory().stringByAppendingPathComponent("screenshot.jpg")
-        UIImageJPEGRepresentation(imageContainerView.image, 0.95)
-        let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
+        // Returns screen dimensions for the device
+        //let screenDimensions: CGSize  = UIScreen.mainScreen().applicationFrame.size
+        //println(screenDimensions)
         
-//        var dic = UIDocumentInteractionController(URL: imageURL)
-//        dic.delegate = self;
-//        dic .presentOptionsMenuFromBarButtonItem(sender, animated: true)
+        let layer = UIApplication.sharedApplication().keyWindow.layer
+        let scale = UIScreen.mainScreen().scale
         
-        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
+        //layer.frame.size.height -= (self.navigationController?.navigationBar.frame.size.height)!
+        //layer.frame.size.height -= toolBar.frame.size.height
+        println(self.navigationController?.navigationBar.frame.size.height)
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+        
+        
+        layer.renderInContext(UIGraphicsGetCurrentContext())
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //save in Photo Album for testing
+        //UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+        
+        
+        
+        // Share the screenshot
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        // Exclude few sharing options
+        activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList,
+            UIActivityTypePostToVimeo
+        ]
         self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
-    
 
     }
 	
