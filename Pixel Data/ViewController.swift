@@ -22,8 +22,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
 		
 		imageContainerView.imageView = imageView
-		imageContainerView.imageWidth = imageWidth
-		imageContainerView.imageHeight = imageHeight
+//		imageContainerView.imageWidth = imageWidth
+//		imageContainerView.imageHeight = imageHeight
 		
 		imageContainerView.delegate = self
         

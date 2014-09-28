@@ -23,8 +23,8 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	var imageData: UnsafePointer<UInt8>?
 	
 	var imageView: UIImageView!
-	var imageWidth: NSLayoutConstraint!
-	var imageHeight: NSLayoutConstraint!
+	//var imageWidth: NSLayoutConstraint!
+	//var imageHeight: NSLayoutConstraint!
 	
 	var colorPinView: ColorPinView!
 	var measurementView: MeasurementView!
@@ -151,8 +151,8 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 		
 		self.image = image
 		imageView.image = self.image!
-		imageWidth.constant = self.image!.size.width
-		imageHeight.constant = self.image!.size.height
+		imageView.frame.size.width = self.image!.size.width
+		imageView.frame.size.height = self.image!.size.height
 		imageView.frame = CGRectMake(0, 0, self.image!.size.width, self.image!.size.height);
 		//        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height)
 		
