@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		410CDD1619D79EB90011D1EA /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410CDD1519D79EB80011D1EA /* MeasurementView.swift */; };
+		411401C519D89B3A0086D16D /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411401C419D89B3A0086D16D /* DeleteView.swift */; };
+		411401C719D8A52D0086D16D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411401C619D8A52D0086D16D /* OverlayView.swift */; };
 		417C0B3A19D757420073D66A /* ImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417C0B3919D757420073D66A /* ImageContainerView.swift */; };
 		41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ADC21719D648860093C1CD /* ColorPinView.swift */; };
 		9D27104719D8AC4700E4A1AB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D27104619D8AC4700E4A1AB /* QuartzCore.framework */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		410CDD1519D79EB80011D1EA /* MeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
+		411401C419D89B3A0086D16D /* DeleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
+		411401C619D8A52D0086D16D /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		417C0B3919D757420073D66A /* ImageContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
 		41ADC21719D648860093C1CD /* ColorPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPinView.swift; sourceTree = "<group>"; };
 		9D27104619D8AC4700E4A1AB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -96,9 +100,11 @@
 				9D95114819D4E688004B6709 /* Images.xcassets */,
 				9D95114A19D4E688004B6709 /* LaunchScreen.xib */,
 				9D95113F19D4E688004B6709 /* Supporting Files */,
+				417C0B3919D757420073D66A /* ImageContainerView.swift */,
+				411401C619D8A52D0086D16D /* OverlayView.swift */,
 				41ADC21719D648860093C1CD /* ColorPinView.swift */,
 				410CDD1519D79EB80011D1EA /* MeasurementView.swift */,
-				417C0B3919D757420073D66A /* ImageContainerView.swift */,
+				411401C419D89B3A0086D16D /* DeleteView.swift */,
 			);
 			path = "Pixel Data";
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411401C519D89B3A0086D16D /* DeleteView.swift in Sources */,
+				411401C719D8A52D0086D16D /* OverlayView.swift in Sources */,
 				9D95114419D4E688004B6709 /* ViewController.swift in Sources */,
 				417C0B3A19D757420073D66A /* ImageContainerView.swift in Sources */,
 				41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */,

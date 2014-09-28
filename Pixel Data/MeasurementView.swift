@@ -8,19 +8,38 @@
 
 import UIKit
 
-class MeasurementView: UIView {
+class MeasurementView: OverlayView {
 	// TODO class variable?
 	private let externalBoundsX = 40.0 as CGFloat
 	private let externalBoundsY = 20.0 as CGFloat
 	
-	// TODO class variable?
-	private var traceColor = UIColor.blackColor()
-	private var fontColor = UIColor.whiteColor()
+	// point1InImage is always the point with the smaller x value
+	private var point1InImage: CGPoint?
+	private var point2InImage: CGPoint?
 	
-	private var point1 = CGPoint(x: 10, y: 10)
-	private var point2 = CGPoint(x: 10, y: 10)
-	
-	private var zoomScale = CGFloat()
+	override var zoomScale: CGFloat {
+		didSet {
+			if point1InImage == nil || point2InImage == nil {
+				return
+			}
+			
+			let point1 = CGPoint(x: point1InImage!.x * zoomScale, y: point1InImage!.y * zoomScale)
+			let point2 = CGPoint(x: point2InImage!.x * zoomScale, y: point2InImage!.y * zoomScale)
+			
+			let minX = min(point1.x, point2.x)
+			let maxX = max(point1.x, point2.x)
+			let minY = min(point1.y, point2.y)
+			let maxY = max(point1.y, point2.y)
+			
+			let positionInSuperview = CGPoint(x: minX - externalBoundsX, y: minY - externalBoundsY)
+			
+			frame = CGRect(x: positionInSuperview.x,
+							y: positionInSuperview.y,
+							width: maxX - minX + 2 * externalBoundsX,
+							height: maxY - minY + 2 * externalBoundsY)
+			setNeedsDisplay()
+		}
+	}
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -38,36 +57,53 @@ class MeasurementView: UIView {
 	}
 	
 	func initMeasurementView() {
-		self.backgroundColor = UIColor.clearColor()
-	}
-	
-	func setColors(#traceColor: UIColor, fontColor:UIColor) {
-		self.traceColor = traceColor
-		self.fontColor = fontColor
-		setNeedsDisplay()
 	}
 	
 	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat) {
+		// point1InImage is always the point with smaller x value
+		if point1.x < point2.x {
+			self.point1InImage = CGPoint(x: floor(point1.x/zoomScale), y: floor(point1.y/zoomScale))
+			self.point2InImage = CGPoint(x: floor(point2.x/zoomScale), y: floor(point2.y/zoomScale))
+		} else {
+			self.point1InImage = CGPoint(x: floor(point2.x/zoomScale), y: floor(point2.y/zoomScale))
+			self.point2InImage = CGPoint(x: floor(point1.x/zoomScale), y: floor(point1.y/zoomScale))
+		}
+		
 		self.zoomScale = zoomScale
-		let minX = min(point1.x, point2.x)
-		let maxX = max(point1.x, point2.x)
-		let minY = min(point1.y, point2.y)
-		let maxY = max(point1.y, point2.y)
-		
-		let positionInSuperview = CGPoint(x: minX - externalBoundsX, y: minY - externalBoundsY)
-		
-		self.point1 = CGPoint(x: point1.x - positionInSuperview.x, y: point1.y - positionInSuperview.y)
-		self.point2 = CGPoint(x: point2.x - positionInSuperview.x, y: point2.y - positionInSuperview.y)
-		
-		frame = CGRect(x: positionInSuperview.x,
-						y: positionInSuperview.y,
-					width: maxX - minX + 2 * externalBoundsX,
-					height: maxY - minY + 2 * externalBoundsY)
-		self.setNeedsDisplay()
 	}
 	
 	override func drawRect(rect: CGRect) {
+		if point1InImage == nil || point2InImage == nil {
+			return
+		}
+		
 		let contextRef = UIGraphicsGetCurrentContext()
+		
+		var point1, point2: CGPoint
+		
+		if point1InImage!.y < point2InImage!.y {
+			/**   |
+			*	-- ---------
+			*	  |			|
+			*	  |			|
+			*	  |			|
+			*	   --------- --
+			*				|			*/
+			
+			point1 = CGPoint(x: externalBoundsX, y: externalBoundsY)
+			point2 = CGPoint(x: rect.width - externalBoundsX, y: rect.height - externalBoundsY)
+		} else {
+			/**				|
+			*	   --------- --
+			*	  |			|
+			*	  |			|
+			*	  |			|
+			*	-- ---------
+			*	  |						*/
+			
+			point1 = CGPoint(x: rect.width - externalBoundsX, y: externalBoundsY)
+			point2 = CGPoint(x: externalBoundsX, y: rect.height - externalBoundsY)
+		}
 		
 		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
 		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
@@ -131,7 +167,7 @@ class MeasurementView: UIView {
 		// the text
 		let attribs = [NSForegroundColorAttributeName : fontColor, NSFontAttributeName : UIFont.boldSystemFontOfSize(10)]
 		
-		let textString = String(format:"Δx: %d Δy: %d", Int(abs((point1.x - point2.x) / zoomScale)), Int(abs((point1.y - point2.y) / zoomScale)))
+		let textString = String(format:"Δx: %d Δy: %d", Int(abs(point1InImage!.x - point2InImage!.x)), Int(abs(point1InImage!.y - point2InImage!.y)))
 		var text = NSAttributedString(string: textString, attributes: attribs)
 		
 		let textSize = text.size();

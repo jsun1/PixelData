@@ -56,8 +56,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.sideRuler.zoomScale = scrollView.zoomScale
         self.topRuler.offset = scrollView.contentOffset
         self.sideRuler.offset = scrollView.contentOffset
+		
+		imageContainerView.redrawOverlays()
     }
-    
     
     //MARK: IBActions
 
@@ -86,7 +87,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
 	
 	@IBAction func longPressRecognized(sender: UILongPressGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			return;
 		}
 		
@@ -100,7 +101,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func longPress2FingersRecognized(sender: UILongPressGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			return;
 		}
 		
@@ -114,7 +115,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func doubleTapOnImageContainerRecognized(sender: UITapGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			cameraPressed(nil)
 		} else {
 			imageContainerView.doubleTapped(sender)
@@ -134,6 +135,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			imageContainerView.mode = Mode.Freestyle
 		} else {
 			imageContainerView.mode = Mode.Annotation
+		}
+	}
+	
+	@IBAction func toggleEditMode(sender: UIBarButtonItem) {
+		if sender.style == .Done {
+			sender.style = .Plain
+			imageContainerView.editMode = false
+		} else {
+			sender.style = .Done
+			imageContainerView.editMode = true
 		}
 	}
 }
