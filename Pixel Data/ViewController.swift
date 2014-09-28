@@ -54,8 +54,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.sideRuler.zoomScale = scrollView.zoomScale
         self.topRuler.offset = scrollView.contentOffset
         self.sideRuler.offset = scrollView.contentOffset
+		
+		imageContainerView.redrawOverlays()
     }
-    
     
     //MARK: IBActions
 
@@ -84,7 +85,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
 	
 	@IBAction func longPressRecognized(sender: UILongPressGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			return;
 		}
 		
@@ -98,7 +99,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func longPress2FingersRecognized(sender: UILongPressGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			return;
 		}
 		
@@ -112,7 +113,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func doubleTapOnImageContainerRecognized(sender: UITapGestureRecognizer) {
-		if imageContainerView.image.size.width == 0 {
+		if imageContainerView.image == nil {
 			cameraPressed(nil)
 		} else {
 			imageContainerView.doubleTapped(sender)

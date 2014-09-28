@@ -16,10 +16,11 @@ enum Theme {
 	case Dark, Light
 }
 
-class ImageContainerView: UIScrollView, UIScrollViewDelegate {
+class ImageContainerView: UIScrollView {
 	let overlayViewsOffset = 40.0 as CGFloat
 	
-	var image: UIImage = UIImage.alloc()
+	var image: UIImage?
+	var imageData: UnsafePointer<UInt8>?
 	
 	var imageView: UIImageView!
 	var imageWidth: NSLayoutConstraint!
@@ -129,23 +130,38 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		}
 	}
 	
+	func redrawOverlays() {
+		for view in measurementViews {
+			view.zoomScale = zoomScale
+		}
+		
+		for view in colorPinViews {
+			view.setNeedsDisplay()
+		}
+		
+		measurementView.zoomScale = zoomScale
+		colorPinView.setNeedsDisplay()
+	}
+	
 	func setImage(image: UIImage) {
+		clearWorkspace()
+		
 		maximumZoomScale = 1
 		minimumZoomScale = 1
 		zoomScale = 1
 		
 		self.image = image
-		imageView.image = self.image
-		imageWidth.constant = self.image.size.width
-		imageHeight.constant = self.image.size.height
-		imageView.frame = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+		imageView.image = self.image!
+		imageWidth.constant = self.image!.size.width
+		imageHeight.constant = self.image!.size.height
+		imageView.frame = CGRectMake(0, 0, self.image!.size.width, self.image!.size.height);
 		//        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height)
 		
 		let widthRatio = ((self.frame.size.width-self.contentInset.left-self.contentInset.right)/self.imageView.frame.size.width)
 		let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
 		let minZoomScale = min(widthRatio, heightRatio)
 		minimumZoomScale = minZoomScale
-        maximumZoomScale = max(self.image.size.width * 10 / self.frame.size.width, minZoomScale * 10)
+        maximumZoomScale = max(self.image!.size.width * 10 / self.frame.size.width, minZoomScale * 10)
 		setZoomScale(minZoomScale, animated: true)
 	}
 	
@@ -154,11 +170,6 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	func showMeasurementView(var #touch1Position: CGPoint, var touch2Position: CGPoint) {
 		touch1Position.y -= overlayViewsOffset
 		touch2Position.y -= overlayViewsOffset
-		
-		touch1Position.x = floor(touch1Position.x / zoomScale) * zoomScale
-		touch1Position.y = floor(touch1Position.y / zoomScale) * zoomScale
-		touch2Position.x = floor(touch2Position.x / zoomScale) * zoomScale
-		touch2Position.y = floor(touch2Position.y / zoomScale) * zoomScale
 		
 		measurementView.setPoints(touch1Position, point2: touch2Position, zoomScale: zoomScale)
 		measurementView.hidden = false
@@ -206,15 +217,26 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	}
 	
 	func colorAtPosition(positionInImage: CGPoint) -> UIColor {
-		if(positionInImage.x < 0 || positionInImage.x > image.size.width
-			|| positionInImage.y < 0 || positionInImage.y > image.size.height) {
+		if image == nil {
+			return UIColor.whiteColor()
+		}
+		
+		if(positionInImage.x < 0 || positionInImage.x > image!.size.width
+			|| positionInImage.y < 0 || positionInImage.y > image!.size.height) {
 				return UIColor.whiteColor()
 		}
 		
-		let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
+//		if imageData == nil {
+//			let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image!.CGImage));
+//			imageData = CFDataGetBytePtr(pixelData);
+//		}
+//		
+//		let data = imageData!
+		
+		let pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image!.CGImage));
 		let data = CFDataGetBytePtr(pixelData);
 		
-		let pixelInfo = Int(((image.size.width * positionInImage.y) + positionInImage.x) * 4); // The image is png
+		let pixelInfo = Int(((image!.size.width * positionInImage.y) + positionInImage.x) * 4); // The image is png
 		
 		let red = data[pixelInfo];
 		let green = data[(pixelInfo + 1)];
