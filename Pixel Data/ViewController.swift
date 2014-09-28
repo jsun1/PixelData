@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate {
-	
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageContainerView: ImageContainerView!
     @IBOutlet weak var imageView: UIImageView!
@@ -18,15 +17,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
     
-	@IBOutlet weak var colorPinView: ColorPinView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		imageContainerView.imageView = imageView
 		imageContainerView.imageWidth = imageWidth
 		imageContainerView.imageHeight = imageHeight
-		imageContainerView.colorPinView = colorPinView
 		
 		imageContainerView.delegate = self
     }
@@ -40,7 +36,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		self.topRuler.hasImage = true
 		self.sideRuler.hasImage = true
     }
-	
 	
 	
 	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -64,7 +59,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //MARK: IBActions
 
-    @IBAction func cameraPressed(sender: UIBarButtonItem) {
+    @IBAction func cameraPressed(sender: UIBarButtonItem?) {
         var imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
@@ -88,23 +83,48 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     }
 	
-	@IBAction func longPressureRecognized(sender: UILongPressGestureRecognizer) {
+	@IBAction func longPressRecognized(sender: UILongPressGestureRecognizer) {
 		if imageContainerView.image.size.width == 0 {
 			return;
 		}
 		
-		var offsetLocation = sender.locationInView(imageContainerView)
-		offsetLocation.y -= 20;
-		
 		if(sender.state == .Began) {
-			imageContainerView.showColorPin(offsetLocation)
+			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
 		} else if(sender.state == .Changed) {
-			imageContainerView.showColorPin(offsetLocation)
+			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
 		} else if(sender.state == .Ended) {
 			imageContainerView.hideColorPin()
 		}
 	}
 	
+	@IBAction func longPress2FingersRecognized(sender: UILongPressGestureRecognizer) {
+		if imageContainerView.image.size.width == 0 {
+			return;
+		}
+		
+		if(sender.state == .Began) {
+			imageContainerView.showMeasurementView(touch1Position: sender.locationOfTouch(0, inView: imageContainerView), touch2Position: sender.locationOfTouch(1, inView: imageContainerView))
+		} else if(sender.state == .Changed) {
+			imageContainerView.showMeasurementView(touch1Position: sender.locationOfTouch(0, inView: imageContainerView), touch2Position: sender.locationOfTouch(1, inView: imageContainerView))
+		} else if(sender.state == .Ended) {
+			imageContainerView.hideMeasurementView()
+		}
+	}
+	
+	@IBAction func doubleTapOnImageContainerRecognized(sender: UITapGestureRecognizer) {
+		if imageContainerView.image.size.width == 0 {
+			cameraPressed(nil)
+		} else {
+			imageContainerView.doubleTapped(sender)
+		}
+	}
 
+	@IBAction func modeChanged(sender: UISegmentedControl) {
+		if sender.selectedSegmentIndex == 0 {
+			imageContainerView.mode = Mode.Freestyle
+		} else {
+			imageContainerView.mode = Mode.Annotation
+		}
+	}
 }
 

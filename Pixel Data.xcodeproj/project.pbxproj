@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410CDD1619D79EB90011D1EA /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410CDD1519D79EB80011D1EA /* MeasurementView.swift */; };
 		417C0B3A19D757420073D66A /* ImageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417C0B3919D757420073D66A /* ImageContainerView.swift */; };
 		41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ADC21719D648860093C1CD /* ColorPinView.swift */; };
 		9D5A404719D65234002903B0 /* RulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A404619D65234002903B0 /* RulerView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		410CDD1519D79EB80011D1EA /* MeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
 		417C0B3919D757420073D66A /* ImageContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageContainerView.swift; sourceTree = "<group>"; };
 		41ADC21719D648860093C1CD /* ColorPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPinView.swift; sourceTree = "<group>"; };
 		9D5A404619D65234002903B0 /* RulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				9D95114A19D4E688004B6709 /* LaunchScreen.xib */,
 				9D95113F19D4E688004B6709 /* Supporting Files */,
 				41ADC21719D648860093C1CD /* ColorPinView.swift */,
+				410CDD1519D79EB80011D1EA /* MeasurementView.swift */,
 				417C0B3919D757420073D66A /* ImageContainerView.swift */,
 			);
 			path = "Pixel Data";
@@ -170,6 +173,7 @@
 				TargetAttributes = {
 					9D95113B19D4E688004B6709 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = X529DYN7TE;
 					};
 					9D95115019D4E688004B6709 = {
 						CreatedOnToolsVersion = 6.0;
@@ -226,6 +230,7 @@
 				41ADC21819D648860093C1CD /* ColorPinView.swift in Sources */,
 				9D95114219D4E688004B6709 /* AppDelegate.swift in Sources */,
 				9D5A404719D65234002903B0 /* RulerView.swift in Sources */,
+				410CDD1619D79EB90011D1EA /* MeasurementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +353,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pixel Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -358,9 +366,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pixel Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

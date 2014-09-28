@@ -8,7 +8,13 @@
 
 import UIKit
 
+enum Mode {
+	case Freestyle,	Annotation
+}
+
 class ImageContainerView: UIScrollView, UIScrollViewDelegate {
+	let overlayViewsOffset = 40.0 as CGFloat
+	
 	var image: UIImage = UIImage.alloc()
 	
 	var imageView: UIImageView!
@@ -16,60 +22,87 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	var imageHeight: NSLayoutConstraint!
 	
 	var colorPinView: ColorPinView!
+	var measurementView: MeasurementView!
+	
+	var mode = Mode.Freestyle
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-        
-        var doubleTap = UITapGestureRecognizer(target: self, action: Selector("doubleTap:"))
-        doubleTap.numberOfTapsRequired = 2;
-        self.addGestureRecognizer(doubleTap)
+		initImageContainer()
+	}
+	
+	override init() {
+		super.init()
+		initImageContainer()
+	}
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		initImageContainer()
+	}
+	
+	func initImageContainer() {
+		measurementView = MeasurementView()
+		self.addSubview(measurementView)
+		
+		colorPinView = ColorPinView()
+		self.addSubview(colorPinView)
 	}
 	
 	func setImage(image: UIImage) {
-		self.maximumZoomScale = 1
-		self.minimumZoomScale = 1
-		self.zoomScale = 1
+		maximumZoomScale = 1
+		minimumZoomScale = 1
+		zoomScale = 1
 		
 		self.image = image
-		self.imageView.image = self.image
-		self.imageWidth.constant = self.image.size.width
-		self.imageHeight.constant = self.image.size.height
-		self.imageView.frame = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
+		imageView.image = self.image
+		imageWidth.constant = self.image.size.width
+		imageHeight.constant = self.image.size.height
+		imageView.frame = CGRectMake(0, 0, self.image.size.width, self.image.size.height);
 		//        self.scrollView.contentSize = CGSizeMake(self.imageView.frame.size.width, self.imageView.frame.size.height)
 		
 		let widthRatio = ((self.frame.size.width-self.contentInset.left-self.contentInset.right)/self.imageView.frame.size.width)
 		let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
 		let minZoomScale = min(widthRatio, heightRatio)
-		self.minimumZoomScale = minZoomScale
-        self.maximumZoomScale = max(self.image.size.width * 10 / self.frame.size.width, minZoomScale * 10)
-		self.setZoomScale(minZoomScale, animated: true)
+		minimumZoomScale = minZoomScale
+        maximumZoomScale = max(self.image.size.width * 10 / self.frame.size.width, minZoomScale * 10)
+		setZoomScale(minZoomScale, animated: true)
 	}
 	
+	//MARK: Measurement view
+	
+	func showMeasurementView(var #touch1Position: CGPoint, var touch2Position: CGPoint) {
+		touch1Position.y -= overlayViewsOffset
+		touch2Position.y -= overlayViewsOffset
+		
+		touch1Position.x = floor(touch1Position.x / zoomScale) * zoomScale
+		touch1Position.y = floor(touch1Position.y / zoomScale) * zoomScale
+		touch2Position.x = floor(touch2Position.x / zoomScale) * zoomScale
+		touch2Position.y = floor(touch2Position.y / zoomScale) * zoomScale
+		
+		measurementView.setPoints(touch1Position, point2: touch2Position, zoomScale: zoomScale)
+		measurementView.hidden = false
+	}
+	
+	func hideMeasurementView() {
+		measurementView.hidden = true
+	}
 	
 	//MARK: Color pin
 	
-	func showColorPin(touchPosition: CGPoint) {
+	func showColorPin(var touchPosition: CGPoint) {
+		touchPosition.y -= overlayViewsOffset
+		
+		touchPosition.x = floor(touchPosition.x / zoomScale) * zoomScale
+		touchPosition.y = floor(touchPosition.y / zoomScale) * zoomScale
+		
 		var pinLocation = touchPosition
-		pinLocation.x -= colorPinView.width / 2
-		pinLocation.y -= colorPinView.height - 20
+		pinLocation.x -= colorPinView.frame.width / 2
+		pinLocation.y -= colorPinView.frame.height - 20
 		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
 		
 		let positionInImage = CGPoint(x: floor(touchPosition.x / zoomScale), y: floor(touchPosition.y / zoomScale))
 		colorPinView.color = colorAtPosition(positionInImage)
-		
-//		print("Offset: ")
-//		println(self.contentOffset)
-//		print("Image size: ")
-//		println(image.size)
-//		print("Zoom scale: ")
-//		println(self.zoomScale)
-//		print("Frame size: ")
-//		println(self.frame.size)
-//		print("Position: ")
-//		println(touchPosition)
-//		print("Position in Image: ")
-//		println(positionInImage)
-//		println()
 		
 		colorPinView.hidden = false
 	}
@@ -96,8 +129,8 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 
 		return UIColor(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: CGFloat(alpha)/255)
 	}
-    
-    func doubleTap(gesture : UITapGestureRecognizer) {
+	
+	func doubleTapped(gesture : UITapGestureRecognizer) {
         if self.zoomScale <= self.minimumZoomScale {
             //Normalize current content size back to content scale of 1.0f
             var contentSize = CGSizeZero
