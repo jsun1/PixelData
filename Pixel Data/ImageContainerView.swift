@@ -12,6 +12,10 @@ enum Mode {
 	case Freestyle,	Annotation
 }
 
+enum Theme {
+	case Dark, Light
+}
+
 class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	let overlayViewsOffset = 40.0 as CGFloat
 	
@@ -30,6 +34,12 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	var mode: Mode = Mode.Freestyle {
 		didSet {
 			clearWorkspace()
+		}
+	}
+	
+	var theme: Theme = Theme.Dark {
+		didSet {
+			updateColors()
 		}
 	}
 	
@@ -53,6 +63,7 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		colorPinView = createColorPinView()
 	}
 	
+	// TODO generic constructor?
 //	func createSubview<T>() -> T {
 //		let view = T()
 //		self.addSubview(view)
@@ -63,6 +74,13 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		let view = MeasurementView()
 		view.hidden = true
 		self.addSubview(view)
+		
+		// TODO remove when traceColor and fontColor are class variables
+		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
+		let fontColor = theme == .Dark ? UIColor.whiteColor() : UIColor.blackColor()
+		view.setColors(traceColor: traceColor, fontColor: fontColor)
+		
+		
 		return view
 	}
 	
@@ -70,6 +88,13 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		let view = ColorPinView()
 		view.hidden = true
 		self.addSubview(view)
+		
+		// TODO remove when traceColor and fontColor are class variables
+		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
+		let fontColor = theme == .Dark ? UIColor.whiteColor() : UIColor.blackColor()
+		view.setColors(traceColor: traceColor, fontColor: fontColor)
+		
+		
 		return view
 	}
 	
@@ -86,6 +111,22 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		
 		measurementView.hidden = true
 		colorPinView.hidden = true
+	}
+	
+	func updateColors() {
+		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
+		let fontColor = theme == .Dark ? UIColor.whiteColor() : UIColor.blackColor()
+		
+		measurementView.setColors(traceColor: traceColor, fontColor: fontColor)
+		colorPinView.setColors(traceColor: traceColor, fontColor: fontColor)
+		
+		for view in measurementViews {
+			view.setColors(traceColor: traceColor, fontColor: fontColor)
+		}
+		
+		for view in colorPinViews {
+			view.setColors(traceColor: traceColor, fontColor: fontColor)
+		}
 	}
 	
 	func setImage(image: UIImage) {

@@ -9,9 +9,12 @@
 import UIKit
 
 class ColorPinView: UIView {
-	let circleRadius = 20.0 as CGFloat
+	// TODO class variable?
+	private let circleRadius = 20.0 as CGFloat
 	
-	var elementBackgroundColor = UIColor.blackColor()
+	// TODO class variable?
+	private var traceColor = UIColor.blackColor()
+	private var fontColor = UIColor.whiteColor()
 	
 	var color: UIColor = UIColor.whiteColor() {
 		didSet {
@@ -38,10 +41,17 @@ class ColorPinView: UIView {
 		self.backgroundColor = UIColor.clearColor()
 	}
 	
+	func setColors(#traceColor: UIColor, fontColor:UIColor) {
+		self.traceColor = traceColor
+		self.fontColor = fontColor
+		setNeedsDisplay()
+	}
+	
 	override func drawRect(rect: CGRect) {
 		let contextRef = UIGraphicsGetCurrentContext()
 		
-		CGContextSetFillColorWithColor(contextRef, elementBackgroundColor.CGColor)
+		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
+		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
 		
 		// the box
 		// circle 1
@@ -93,7 +103,7 @@ class ColorPinView: UIView {
 		let hexVal = String(format: "#%02x%02x%02x%02x", Int(Float(rgba[3]) * 255.99999), Int(Float(rgba[0]) * 255.99999), Int(Float(rgba[1]) * 255.99999), Int(Float(rgba[2]) * 255.99999))
 		
 		
-		let attribs = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.boldSystemFontOfSize(10)]
+		let attribs = [NSForegroundColorAttributeName: fontColor, NSFontAttributeName: UIFont.boldSystemFontOfSize(10)]
 		var text = NSAttributedString(string: intVal, attributes: attribs)
 		text.drawAtPoint(CGPointMake(48, 7))
 		text = NSAttributedString(string: hexVal, attributes: attribs)

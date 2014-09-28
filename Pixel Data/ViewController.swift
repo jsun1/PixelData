@@ -118,7 +118,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			imageContainerView.doubleTapped(sender)
 		}
 	}
-
+	
+	@IBAction func themeChanged(sender: UISegmentedControl) {
+		if sender.selectedSegmentIndex == 0 {
+			imageContainerView.theme = Theme.Dark
+		} else {
+			imageContainerView.theme = Theme.Light
+		}
+	}
+	
 	@IBAction func modeChanged(sender: UISegmentedControl) {
 		if sender.selectedSegmentIndex == 0 {
 			imageContainerView.mode = Mode.Freestyle

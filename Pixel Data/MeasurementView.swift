@@ -9,13 +9,18 @@
 import UIKit
 
 class MeasurementView: UIView {
-	let externalBoundsX = 40.0 as CGFloat
-	let externalBoundsY = 20.0 as CGFloat
+	// TODO class variable?
+	private let externalBoundsX = 40.0 as CGFloat
+	private let externalBoundsY = 20.0 as CGFloat
 	
-	var point1 = CGPoint(x: 10, y: 10)
-	var point2 = CGPoint(x: 10, y: 10)
+	// TODO class variable?
+	private var traceColor = UIColor.blackColor()
+	private var fontColor = UIColor.whiteColor()
 	
-	var zoomScale = CGFloat()
+	private var point1 = CGPoint(x: 10, y: 10)
+	private var point2 = CGPoint(x: 10, y: 10)
+	
+	private var zoomScale = CGFloat()
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -34,6 +39,12 @@ class MeasurementView: UIView {
 	
 	func initMeasurementView() {
 		self.backgroundColor = UIColor.clearColor()
+	}
+	
+	func setColors(#traceColor: UIColor, fontColor:UIColor) {
+		self.traceColor = traceColor
+		self.fontColor = fontColor
+		setNeedsDisplay()
 	}
 	
 	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat) {
@@ -58,7 +69,8 @@ class MeasurementView: UIView {
 	override func drawRect(rect: CGRect) {
 		let contextRef = UIGraphicsGetCurrentContext()
 		
-		CGContextSetFillColorWithColor(contextRef, UIColor.blackColor().CGColor)
+		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
+		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
 		
 		// the first +
 		CGContextMoveToPoint(contextRef, point1.x - 10, point1.y)
@@ -117,7 +129,7 @@ class MeasurementView: UIView {
 		
 		
 		// the text
-		let attribs = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont.boldSystemFontOfSize(10)]
+		let attribs = [NSForegroundColorAttributeName : fontColor, NSFontAttributeName : UIFont.boldSystemFontOfSize(10)]
 		
 		let textString = String(format:"Δx: %d Δy: %d", Int(abs((point1.x - point2.x) / zoomScale)), Int(abs((point1.y - point2.y) / zoomScale)))
 		var text = NSAttributedString(string: textString, attributes: attribs)
