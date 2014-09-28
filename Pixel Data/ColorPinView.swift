@@ -58,7 +58,21 @@ class ColorPinView: UIView {
 		CGContextFillPath(contextRef)
 		
 		// write the color elements
+		var rgba = [CGFloat](count: 4, repeatedValue: 0.0)
 		
-		println(color)
+		color.getRed(&rgba[0], green: &rgba[1], blue: &rgba[2], alpha: &rgba[3])
+		
+//		let floatVal = String(format: "%.3f, %.3f, %.3f, %.3f", Float(rgba[0]), Float(rgba[1]), Float(rgba[2]), Float(rgba[3]))
+		let intVal = String(format: "R:%03.0f, G:%03.0f\nB:%03.0f, A:%03.0f", Float(rgba[0]) * 255.99999, Float(rgba[1]) * 255.99999, Float(rgba[2]) * 255.99999, Float(rgba[3]) * 255.99999)
+		let hexVal = String(format: "#%02x%02x%02x%02x", Int(Float(rgba[3]) * 255.99999), Int(Float(rgba[0]) * 255.99999), Int(Float(rgba[1]) * 255.99999), Int(Float(rgba[2]) * 255.99999))
+		
+		
+		let attribs = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont.boldSystemFontOfSize(10)]
+//		var text = NSAttributedString(string : String(floatVal), attributes: attribs)
+//		text.drawAtPoint(CGPointMake(50, 5))
+		var text = NSAttributedString(string : String(intVal), attributes: attribs)
+		text.drawAtPoint(CGPointMake(48, 7))
+		text = NSAttributedString(string : String(hexVal), attributes: attribs)
+		text.drawAtPoint(CGPointMake(48, 32))
 	}
 }
