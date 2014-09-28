@@ -25,6 +25,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		imageContainerView.imageHeight = imageHeight
 		
 		imageContainerView.delegate = self
+        
+        self.imageView.layer.magnificationFilter = kCAFilterNearest
     }
 
     //MARK: Delegates

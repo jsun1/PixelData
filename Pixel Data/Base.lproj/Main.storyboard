@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -87,6 +87,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCO-Hb-OOv">
                                 <rect key="frame" x="0.0" y="64" width="20" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="eLM-Gu-zf5"/>
+                                    <constraint firstAttribute="width" constant="20" id="l7O-Kg-YiO"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-pE-6nE" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
                                 <rect key="frame" x="20" y="64" width="580" height="20"/>
@@ -151,6 +155,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="20" id="4Kh-8Z-scj"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="58V-oM-mh1"/>
+                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="ZCO-Hb-OOv" secondAttribute="trailing" id="5TT-HI-utk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lEI-pE-6nE" secondAttribute="trailing" constant="-16" id="9aF-Ab-95j"/>
                             <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="9qp-wo-end"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="O3I-jL-Cd8" secondAttribute="trailing" id="DHY-Br-GvQ"/>
@@ -167,9 +173,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="Vm5-ff-5oV"/>
                             <constraint firstItem="ZCO-Hb-OOv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Vq7-rG-dqS"/>
                             <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="ZTN-KU-6QG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="dfO-OE-WFZ"/>
                             <constraint firstItem="5v2-pZ-YLI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jOu-Gy-rHE"/>
                             <constraint firstItem="lEI-pE-6nE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kHZ-SW-r01"/>
                             <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="O3I-jL-Cd8" secondAttribute="bottom" id="kMc-jU-PcT"/>
+                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="ocs-OO-RpA"/>
                             <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="ZCO-Hb-OOv" secondAttribute="trailing" id="qeK-6K-J1w"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="sT7-MJ-MOf"/>
                             <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="tYd-Fc-rAZ"/>
@@ -177,10 +185,16 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="V0o-bs-gd5"/>
+                                <exclude reference="ZTN-KU-6QG"/>
+                                <exclude reference="qeK-6K-J1w"/>
+                                <exclude reference="9qp-wo-end"/>
+                                <exclude reference="G6S-Nu-rbv"/>
+                                <exclude reference="ocs-OO-RpA"/>
                                 <exclude reference="4Kh-8Z-scj"/>
                                 <exclude reference="Ozb-1w-hlh"/>
                                 <exclude reference="sT7-MJ-MOf"/>
                                 <exclude reference="tYd-Fc-rAZ"/>
+                                <exclude reference="Id7-is-9LI"/>
                                 <exclude reference="QoB-J4-Ge6"/>
                             </mask>
                         </variation>
