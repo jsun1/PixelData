@@ -135,7 +135,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList,
             UIActivityTypePostToVimeo
         ]
-        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+        if (UIDevice.currentDevice().userInterfaceIdiom != .Pad) {
+            self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+        } else {
+            if ((self.popover) != nil) {
+                if (self.popover!.popoverVisible) {
+                    self.popover!.dismissPopoverAnimated(true)
+                    self.popover = nil;
+                    return;
+                }
+                self.popover = nil;
+            }
+            var newPopover = UIPopoverController(contentViewController: activityViewController)
+            newPopover.delegate = self;
+            self.popover = newPopover;
+            self.popover!.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+        }
 
     }
 	
