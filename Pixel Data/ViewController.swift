@@ -93,10 +93,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			return;
 		}
 		
+		var offsetLocation = sender.locationInView(imageContainerView)
+		offsetLocation.y -= 20;
+		
 		if(sender.state == .Began) {
-			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
+			imageContainerView.showColorPin(offsetLocation)
 		} else if(sender.state == .Changed) {
-			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
+			imageContainerView.showColorPin(offsetLocation)
 		} else if(sender.state == .Ended) {
 			imageContainerView.hideColorPin()
 		}

@@ -10,7 +10,7 @@ import UIKit
 
 class ColorPinView: UIView {
 	let width = 120.0 as CGFloat
-	let height = 60.0 as CGFloat
+	let height = 80.0 as CGFloat
 	
 	let circleRadius = 20.0 as CGFloat
 	
@@ -41,11 +41,22 @@ class ColorPinView: UIView {
 		CGContextFillPath(contextRef)
 		
 		// the tip
-		CGContextMoveToPoint(contextRef, 0, 10 + circleRadius)
-		CGContextAddLineToPoint(contextRef, width / 2, height)
-		CGContextAddLineToPoint(contextRef, width, 10 + circleRadius)
+		CGContextMoveToPoint(contextRef, 30, 10 + circleRadius)
+		CGContextAddLineToPoint(contextRef, width / 2, height - 21)
+		CGContextAddLineToPoint(contextRef, width - 30, 10 + circleRadius)
 		CGContextClosePath(contextRef)
 		CGContextFillPath(contextRef)
+		
+		// the +
+		CGContextMoveToPoint(contextRef, width / 2 - 10, height - 20)
+		CGContextAddLineToPoint(contextRef, width / 2 - 1, height - 20)
+		CGContextStrokePath(contextRef)
+		CGContextMoveToPoint(contextRef, width / 2 + 1, height - 20)
+		CGContextAddLineToPoint(contextRef, width / 2 + 10, height - 20)
+		CGContextStrokePath(contextRef)
+		CGContextMoveToPoint(contextRef, width / 2, height - 19)
+		CGContextAddLineToPoint(contextRef, width / 2, height - 10)
+		CGContextStrokePath(contextRef)
 		
 		// white for the background
 		CGContextAddEllipseInRect(contextRef, CGRect(x: 5, y: 5, width: 2 * circleRadius, height: 2 * circleRadius))

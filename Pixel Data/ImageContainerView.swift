@@ -51,7 +51,7 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	func showColorPin(touchPosition: CGPoint) {
 		var pinLocation = touchPosition
 		pinLocation.x -= colorPinView.width / 2
-		pinLocation.y -= colorPinView.height
+		pinLocation.y -= colorPinView.height - 20
 		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
 		
 		let positionInImage = CGPoint(x: floor(touchPosition.x / zoomScale), y: floor(touchPosition.y / zoomScale))

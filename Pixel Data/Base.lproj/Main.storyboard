@@ -46,7 +46,7 @@
                                         </constraints>
                                     </imageView>
                                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c47-5v-p6s" customClass="ColorPinView" customModule="Pixel_Data" customModuleProvider="target">
-                                        <rect key="frame" x="230" y="206" width="120" height="60"/>
+                                        <rect key="frame" x="230" y="206" width="120" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
