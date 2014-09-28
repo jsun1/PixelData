@@ -25,6 +25,7 @@ class OverlayView: UIView {
 	var editMode: Bool = false {
 		didSet {
 			deleteView.hidden = !editMode
+			jiggle(editMode)
 		}
 	}
 	
@@ -61,6 +62,20 @@ class OverlayView: UIView {
 		self.traceColor = traceColor
 		self.fontColor = fontColor
 		setNeedsDisplay()
+	}
+	
+	func jiggle(jiggle: Bool) {
+		if(jiggle) {
+			let basicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+			basicAnimation.toValue = -M_PI/24
+			basicAnimation.fromValue = M_PI/24 // rotation angle
+			basicAnimation.duration = 0.1
+			basicAnimation.repeatCount = Float.infinity
+			basicAnimation.autoreverses = true
+			layer.addAnimation(basicAnimation, forKey: "jiggle")
+		} else {
+			layer.removeAllAnimations()
+		}
 	}
 	
 	func tapRecognized(gesture : UITapGestureRecognizer) {

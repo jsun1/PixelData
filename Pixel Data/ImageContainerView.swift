@@ -138,6 +138,7 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 			view.zoomScale = zoomScale
 		}
 		
+		// TODO why?
 		(measurementView as OverlayView).zoomScale = zoomScale
 		(colorPinView as OverlayView).zoomScale = zoomScale
 	}

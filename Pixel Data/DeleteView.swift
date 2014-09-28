@@ -8,12 +8,8 @@
 
 import UIKit
 
-class DeleteView: UIView {
+class DeleteView: UIImageView {
 	private let size = 20.0 as CGFloat
-	
-	// TODO class variable?
-	private var traceColor = UIColor.grayColor()
-	private var fontColor = UIColor.whiteColor()
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -31,21 +27,6 @@ class DeleteView: UIView {
 	}
 	
 	func initDeleteView() {
-		backgroundColor = UIColor.clearColor()
-	}
-	
-	func setColors(#traceColor: UIColor, fontColor:UIColor) {
-		self.traceColor = traceColor
-		self.fontColor = fontColor
-		setNeedsDisplay()
-	}
-	
-	override func drawRect(rect: CGRect) {
-		let contextRef = UIGraphicsGetCurrentContext()
-		
-		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
-		
-		CGContextAddEllipseInRect(contextRef, CGRect(x: 0, y: 0, width: size, height: size))
-		CGContextFillPath(contextRef)
+		image = UIImage(named: "delete_icon")
 	}
 }

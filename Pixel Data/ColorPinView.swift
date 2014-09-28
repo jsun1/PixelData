@@ -23,7 +23,7 @@ class ColorPinView: OverlayView {
 				return
 			}
 			
-			var positionInSuperview = CGPoint(x: pointInImage!.x * zoomScale, y: pointInImage!.y * zoomScale)
+			var positionInSuperview = CGPoint(x: (pointInImage!.x + 0.5) * zoomScale, y: (pointInImage!.y + 0.5) * zoomScale)
 			positionInSuperview.x -= frameWidth / 2
 			positionInSuperview.y -= frameHeight - 20
 			frame = CGRect(x: positionInSuperview.x, y: positionInSuperview.y, width: frameWidth, height: frameHeight)
