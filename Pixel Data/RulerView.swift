@@ -21,9 +21,7 @@ class RulerView: UIView {
         didSet {
             self.setNeedsDisplay()
         }
-    }
-    var scale = 1
-    
+    }    
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -32,19 +30,6 @@ class RulerView: UIView {
         if !hasImage {
             self.zoomScale = 10;
         }
-    
-        var begin = CGFloat(0)
-        var end = CGFloat(300)
-        
-        let length = end - begin
-        //at my x = 0, pixel is begin
-        //at my y = width, pixel is end
-        if (length > self.frame.size.width) {
-            
-            
-            
-        }
-        
         var widthOfTen = 10 * zoomScale
         
         var multiplier = 1
@@ -52,10 +37,6 @@ class RulerView: UIView {
             multiplier += 1
             widthOfTen = 10 * zoomScale * CGFloat(multiplier)
         }
-        
-        
-        
-//        let widthOfTen = CGFloat(40) //want this to be between 20 and 40
         
         var displayText = false
         var darkColor = UIColor.darkGrayColor().CGColor

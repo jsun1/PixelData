@@ -16,6 +16,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
+    @IBOutlet weak var gridView: GridView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		
 		self.topRuler.hasImage = true
 		self.sideRuler.hasImage = true
+        self.gridView.hasImage = true
+        self.gridView.size = image.size
     }
 	
 	
@@ -47,16 +50,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     func scrollViewDidScroll(scrollView: UIScrollView) {
         self.topRuler.zoomScale = scrollView.zoomScale
         self.sideRuler.zoomScale = scrollView.zoomScale
+        self.gridView.zoomScale = scrollView.zoomScale
         self.topRuler.offset = scrollView.contentOffset
         self.sideRuler.offset = scrollView.contentOffset
+        self.gridView.offset = scrollView.contentOffset
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
         self.topRuler.zoomScale = scrollView.zoomScale
         self.sideRuler.zoomScale = scrollView.zoomScale
+        self.gridView.zoomScale = scrollView.zoomScale
         self.topRuler.offset = scrollView.contentOffset
         self.sideRuler.offset = scrollView.contentOffset
-		
+		self.gridView.offset = scrollView.contentOffset
 		imageContainerView.redrawOverlays()
     }
     
