@@ -109,9 +109,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Zjc-wx-BPQ"/>
-                                            <barButtonItem style="plain" id="SwC-Ft-1ap">
+                                            <barButtonItem width="200" style="plain" id="SwC-Ft-1ap">
                                                 <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Ab1-bD-ebq">
-                                                    <rect key="frame" x="238" y="8" width="123" height="30"/>
+                                                    <rect key="frame" x="200" y="7" width="200" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Freestyle"/>

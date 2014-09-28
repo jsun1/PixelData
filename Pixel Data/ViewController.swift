@@ -93,7 +93,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		} else if(sender.state == .Changed) {
 			imageContainerView.showColorPin(sender.locationInView(imageContainerView))
 		} else if(sender.state == .Ended) {
-			imageContainerView.hideColorPin()
+			imageContainerView.endShowingColorPin()
 		}
 	}
 	
@@ -107,7 +107,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		} else if(sender.state == .Changed) {
 			imageContainerView.showMeasurementView(touch1Position: sender.locationOfTouch(0, inView: imageContainerView), touch2Position: sender.locationOfTouch(1, inView: imageContainerView))
 		} else if(sender.state == .Ended) {
-			imageContainerView.hideMeasurementView()
+			imageContainerView.endShowingMeasurementView()
 		}
 	}
 	

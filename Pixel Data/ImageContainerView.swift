@@ -24,7 +24,14 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	var colorPinView: ColorPinView!
 	var measurementView: MeasurementView!
 	
-	var mode = Mode.Freestyle
+	var colorPinViews = [ColorPinView]()
+	var measurementViews = [MeasurementView]()
+	
+	var mode: Mode = Mode.Freestyle {
+		didSet {
+			clearWorkspace()
+		}
+	}
 	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -42,11 +49,43 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 	}
 	
 	func initImageContainer() {
-		measurementView = MeasurementView()
-		self.addSubview(measurementView)
+		measurementView = createMeasurementView()
+		colorPinView = createColorPinView()
+	}
+	
+//	func createSubview<T>() -> T {
+//		let view = T()
+//		self.addSubview(view)
+//		return view
+//	}
+	
+	func createMeasurementView() -> MeasurementView {
+		let view = MeasurementView()
+		view.hidden = true
+		self.addSubview(view)
+		return view
+	}
+	
+	func createColorPinView() -> ColorPinView {
+		let view = ColorPinView()
+		view.hidden = true
+		self.addSubview(view)
+		return view
+	}
+	
+	func clearWorkspace() {
+		for view in measurementViews {
+			view.removeFromSuperview()
+		}
+		measurementViews.removeAll(keepCapacity: false)
 		
-		colorPinView = ColorPinView()
-		self.addSubview(colorPinView)
+		for view in colorPinViews {
+			view.removeFromSuperview()
+		}
+		colorPinViews.removeAll(keepCapacity: false)
+		
+		measurementView.hidden = true
+		colorPinView.hidden = true
 	}
 	
 	func setImage(image: UIImage) {
@@ -84,8 +123,15 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		measurementView.hidden = false
 	}
 	
-	func hideMeasurementView() {
-		measurementView.hidden = true
+	func endShowingMeasurementView() {
+		switch mode {
+		case .Freestyle:
+			measurementView.hidden = true
+			
+		case .Annotation:
+			measurementViews.append(measurementView)
+			measurementView = createMeasurementView()
+		}
 	}
 	
 	//MARK: Color pin
@@ -107,8 +153,15 @@ class ImageContainerView: UIScrollView, UIScrollViewDelegate {
 		colorPinView.hidden = false
 	}
 	
-	func hideColorPin() {
-		colorPinView.hidden = true
+	func endShowingColorPin() {
+		switch mode {
+		case .Freestyle:
+			colorPinView.hidden = true
+			
+		case .Annotation:
+			colorPinViews.append(colorPinView)
+			colorPinView = createColorPinView()
+		}
 	}
 	
 	func colorAtPosition(positionInImage: CGPoint) -> UIColor {
