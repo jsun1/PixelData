@@ -9,12 +9,30 @@
 import UIKit
 
 class ColorPinView: UIView {
+	private let frameWidth = 120.0 as CGFloat
+	private let frameHeight = 80.0 as CGFloat
+	
 	// TODO class variable?
 	private let circleRadius = 20.0 as CGFloat
 	
 	// TODO class variable?
 	private var traceColor = UIColor.blackColor()
 	private var fontColor = UIColor.whiteColor()
+	
+	private var pointInImage: CGPoint?
+	
+	var zoomScale: CGFloat = CGFloat() {
+		didSet {
+			if pointInImage == nil {
+				return
+			}
+			
+			var positionInSuperview = CGPoint(x: pointInImage!.x * zoomScale, y: pointInImage!.y * zoomScale)
+			positionInSuperview.x -= frameWidth / 2
+			positionInSuperview.y -= frameHeight - 20
+			frame = CGRect(x: positionInSuperview.x, y: positionInSuperview.y, width: frameWidth, height: frameHeight)
+		}
+	}
 	
 	var color: UIColor = UIColor.whiteColor() {
 		didSet {
@@ -28,7 +46,7 @@ class ColorPinView: UIView {
 	}
 	
 	override init() {
-		super.init(frame: CGRect(x: 0, y: 0, width: 120, height: 80))
+		super.init(frame: CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight))
 		initPinView()
 	}
 	
@@ -39,6 +57,15 @@ class ColorPinView: UIView {
 	
 	func initPinView() {
 		self.backgroundColor = UIColor.clearColor()
+	}
+	
+	func setPoint(point: CGPoint, zoomScale: CGFloat) {
+		pointInImage = CGPoint(x: floor(point.x/zoomScale), y: floor(point.y/zoomScale))
+		self.zoomScale = zoomScale
+	}
+	
+	func getPointInImage() -> CGPoint? {
+		return pointInImage
 	}
 	
 	func setColors(#traceColor: UIColor, fontColor:UIColor) {

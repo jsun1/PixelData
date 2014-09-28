@@ -136,11 +136,11 @@ class ImageContainerView: UIScrollView {
 		}
 		
 		for view in colorPinViews {
-			view.setNeedsDisplay()
+			view.zoomScale = zoomScale
 		}
 		
 		measurementView.zoomScale = zoomScale
-		colorPinView.setNeedsDisplay()
+		colorPinView.zoomScale = zoomScale
 	}
 	
 	func setImage(image: UIImage) {
@@ -191,16 +191,8 @@ class ImageContainerView: UIScrollView {
 	func showColorPin(var touchPosition: CGPoint) {
 		touchPosition.y -= overlayViewsOffset
 		
-		touchPosition.x = floor(touchPosition.x / zoomScale) * zoomScale
-		touchPosition.y = floor(touchPosition.y / zoomScale) * zoomScale
-		
-		var pinLocation = touchPosition
-		pinLocation.x -= colorPinView.frame.width / 2
-		pinLocation.y -= colorPinView.frame.height - 20
-		colorPinView.frame = CGRect(x: pinLocation.x, y: pinLocation.y, width: colorPinView.frame.width, height: colorPinView.frame.height)
-		
-		let positionInImage = CGPoint(x: floor(touchPosition.x / zoomScale), y: floor(touchPosition.y / zoomScale))
-		colorPinView.color = colorAtPosition(positionInImage)
+		colorPinView.setPoint(touchPosition, zoomScale: zoomScale)
+		colorPinView.color = colorAtPosition(colorPinView.getPointInImage()!)
 		
 		colorPinView.hidden = false
 	}

@@ -90,11 +90,6 @@ class MeasurementView: UIView {
 		
 		let contextRef = UIGraphicsGetCurrentContext()
 		
-		print("point1InImage")
-		println(point1InImage)
-		print("point2InImage")
-		println(point2InImage)
-		
 		var point1, point2: CGPoint
 		
 		if point1InImage!.y < point2InImage!.y {
@@ -120,12 +115,6 @@ class MeasurementView: UIView {
 			point1 = CGPoint(x: rect.width - externalBoundsX, y: externalBoundsY)
 			point2 = CGPoint(x: externalBoundsX, y: rect.height - externalBoundsY)
 		}
-		
-		print("point1")
-		println(point1)
-		print("point2")
-		println(point2)
-		println()
 		
 		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
 		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
