@@ -17,6 +17,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
     @IBOutlet weak var gridView: GridView!
+	@IBOutlet weak var editButton: UIBarButtonItem!
+	
+	var editingMode: Bool = false {
+		didSet {
+			if editing {
+				editButton.style = .Plain
+			} else {
+				editButton.style = .Done
+			}
+			
+			imageContainerView.editMode = editingMode
+		}
+	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,16 +155,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		} else {
 			imageContainerView.mode = Mode.Annotation
 		}
+		
+		editingMode = false
 	}
 	
 	@IBAction func toggleEditMode(sender: UIBarButtonItem) {
-		if sender.style == .Done {
-			sender.style = .Plain
-			imageContainerView.editMode = false
-		} else {
-			sender.style = .Done
-			imageContainerView.editMode = true
-		}
+		editingMode = !editingMode;
 	}
 }
 

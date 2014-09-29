@@ -28,5 +28,6 @@ class DeleteView: UIImageView {
 	
 	func initDeleteView() {
 		image = UIImage(named: "delete_icon")
+		userInteractionEnabled = true
 	}
 }

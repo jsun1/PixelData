@@ -22,6 +22,8 @@ class OverlayView: UIView {
 	
 	var zoomScale: CGFloat = CGFloat()
 	
+	var jiggleRotationAngle = M_PI/60
+	
 	var editMode: Bool = false {
 		didSet {
 			deleteView.hidden = !editMode
@@ -67,8 +69,8 @@ class OverlayView: UIView {
 	func jiggle(jiggle: Bool) {
 		if(jiggle) {
 			let basicAnimation = CABasicAnimation(keyPath: "transform.rotation")
-			basicAnimation.toValue = -M_PI/24
-			basicAnimation.fromValue = M_PI/24 // rotation angle
+			basicAnimation.toValue = -jiggleRotationAngle
+			basicAnimation.fromValue = jiggleRotationAngle // rotation angle
 			basicAnimation.duration = 0.1
 			basicAnimation.repeatCount = Float.infinity
 			basicAnimation.autoreverses = true

@@ -23,6 +23,8 @@ class MeasurementView: OverlayView {
 				return
 			}
 			
+			jiggleRotationAngle = M_PI / (150 as Double * Double(zoomScale))
+			
 			let point1 = CGPoint(x: point1InImage!.x * zoomScale, y: point1InImage!.y * zoomScale)
 			let point2 = CGPoint(x: point2InImage!.x * zoomScale, y: point2InImage!.y * zoomScale)
 			
@@ -57,6 +59,7 @@ class MeasurementView: OverlayView {
 	}
 	
 	func initMeasurementView() {
+		deleteView.frame = CGRect(x: externalBoundsX/2, y: 0, width: deleteView.frame.width, height: deleteView.frame.height)
 	}
 	
 	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat) {
@@ -107,6 +110,12 @@ class MeasurementView: OverlayView {
 		
 		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
 		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
+		
+		var lineWidth = 1 as CGFloat
+		if zoomScale >= 10 {
+			lineWidth = 3
+		}
+		CGContextSetLineWidth(contextRef, lineWidth)
 		
 		// the first +
 		CGContextMoveToPoint(contextRef, point1.x - 10, point1.y)

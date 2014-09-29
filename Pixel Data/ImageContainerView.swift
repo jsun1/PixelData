@@ -173,6 +173,8 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 		
 		measurementView.setPoints(touch1Position, point2: touch2Position, zoomScale: zoomScale)
 		measurementView.hidden = false
+		
+		measurementView.editMode = editMode
 	}
 	
 	func endShowingMeasurementView() {
@@ -195,6 +197,8 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 		colorPinView.pixelColor = colorAtPosition(colorPinView.getPointInImage()!)
 		
 		colorPinView.hidden = false
+		
+		colorPinView.editMode = editMode
 	}
 	
 	func endShowingColorPin() {
