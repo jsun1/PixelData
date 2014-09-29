@@ -10,7 +10,7 @@ import UIKit
 
 class MeasurementView: OverlayView {
 	// TODO class variable?
-	private let externalBoundsX = 40.0 as CGFloat
+	private let externalBoundsX = 60.0 as CGFloat
 	private let externalBoundsY = 20.0 as CGFloat
 	
 	// point1InImage is always the point with the smaller x value
@@ -60,6 +60,7 @@ class MeasurementView: OverlayView {
 	
 	func initMeasurementView() {
 		deleteView.frame = CGRect(x: externalBoundsX/2, y: 0, width: deleteView.frame.width, height: deleteView.frame.height)
+        self.clipsToBounds = false
 	}
 	
 	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat, contentOffset: CGPoint) {
@@ -109,7 +110,7 @@ class MeasurementView: OverlayView {
 			point1 = CGPoint(x: rect.width - externalBoundsX, y: externalBoundsY)
 			point2 = CGPoint(x: externalBoundsX, y: rect.height - externalBoundsY)
 		}
-		
+        
 		CGContextSetFillColorWithColor(contextRef, traceColor.CGColor)
 		CGContextSetStrokeColorWithColor(contextRef, traceColor.CGColor)
 		
@@ -199,8 +200,40 @@ class MeasurementView: OverlayView {
 		CGContextAddLineToPoint(contextRef, textPosition.x, backgroundHeight)
 		CGContextClosePath(contextRef)
 		CGContextFillPath(contextRef)
+        
+        //text for each point
+        //point1
+        let textString1 = String(format:"(%d, %d)", Int(point1InImage!.x), Int(point1InImage!.y))
+        var text1 = NSAttributedString(string: textString1, attributes: attribs)
+        let textPos1 = CGPointMake(point1.x - text1.size().width/2, point1.y + 6)
+        // circle 1
+        CGContextAddEllipseInRect(contextRef, CGRect(x: textPos1.x - backgroundHeight / 2, y: textPos1.y - 1, width: backgroundHeight, height: backgroundHeight))
+        CGContextFillPath(contextRef)
+        // circle 2
+        CGContextAddEllipseInRect(contextRef, CGRect(x: textPos1.x + text1.size().width - backgroundHeight / 2, y: textPos1.y - 1, width: backgroundHeight, height: backgroundHeight))
+        CGContextFillPath(contextRef)
+        // rectangle
+        CGContextFillRect(contextRef, CGRectMake(textPos1.x, textPos1.y - 1, text1.size().width, backgroundHeight))
+        
+        //point2
+        let textString2 = String(format:"(%d, %d)", Int(point2InImage!.x), Int(point2InImage!.y))
+        var text2 = NSAttributedString(string: textString2, attributes: attribs)
+        let textPos2 = CGPointMake(point2.x - text2.size().width/2, point2.y - 20)
+        // circle 1
+        CGContextAddEllipseInRect(contextRef, CGRect(x: textPos2.x - backgroundHeight / 2, y: textPos2.y - 1, width: backgroundHeight, height: backgroundHeight))
+        CGContextFillPath(contextRef)
+        // circle 2
+        CGContextAddEllipseInRect(contextRef, CGRect(x: textPos2.x + text2.size().width - backgroundHeight / 2, y: textPos2.y - 1, width: backgroundHeight, height: backgroundHeight))
+        CGContextFillPath(contextRef)
+        // rectangle
+        CGContextFillRect(contextRef, CGRectMake(textPos2.x, textPos2.y - 1, text2.size().width, backgroundHeight))
 		
-		
+        
+        
+        text1.drawAtPoint(textPos1)
+        text2.drawAtPoint(textPos2)
+        
 		text.drawAtPoint(textPosition)
+       
 	}
 }

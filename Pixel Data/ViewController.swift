@@ -140,11 +140,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         //layer.frame.size.height -= (self.navigationController?.navigationBar.frame.size.height)!
         //layer.frame.size.height -= toolBar.frame.size.height
-        println(self.navigationController?.navigationBar.frame.size.height)
-        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+//        println(self.navigationController?.navigationBar.frame.size.height)
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(layer.frame.size.width, self.topRuler.frame.size.height + self.imageContainerView.frame.size.height), false, scale)
         
-        
-        layer.renderInContext(UIGraphicsGetCurrentContext())
+        var context = UIGraphicsGetCurrentContext()
+        CGContextTranslateCTM(context, 0, -self.topRuler.frame.origin.y)
+        layer.renderInContext(context)
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
