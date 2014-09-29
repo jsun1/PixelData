@@ -163,7 +163,7 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
         let heightRatio = ((self.frame.size.height-self.contentInset.top-self.contentInset.bottom)/self.imageView.frame.size.height)
         let minZoomScale = min(widthRatio, heightRatio)
         minimumZoomScale = minZoomScale
-        maximumZoomScale = max(self.image!.size.width * 10 / self.frame.size.width, minZoomScale * 10)
+        maximumZoomScale = max(self.image!.size.width * 20 / self.frame.size.width, minZoomScale * 10)
         if (!zoomIsMin) {
             setZoomScale(prevZoomScale, animated: true)
         } else {
