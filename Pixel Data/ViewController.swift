@@ -17,6 +17,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
     @IBOutlet weak var gridView: GridView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
 	@IBOutlet weak var editButton: UIBarButtonItem!
 	
 	var editingMode: Bool = false {
@@ -30,6 +31,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 			imageContainerView.editMode = editingMode
 		}
 	}
+    
+    var popover:UIPopoverController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
