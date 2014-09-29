@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "annotation_mode.png"
+      "filename" : "annotation_green.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "annotation_mode@2x.png"
+      "filename" : "annotation_green@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "annotation_mode@3x.png"
+      "filename" : "annotation_green@3x.png"
     }
   ],
   "info" : {

@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "realtime_mode_gray.png"
+      "filename" : "annotation_gray.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "realtime_mode_gray@2x.png"
+      "filename" : "annotation_gray@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "realtime_mode_gray@3x.png"
+      "filename" : "annotation_gray@3x.png"
     }
   ],
   "info" : {

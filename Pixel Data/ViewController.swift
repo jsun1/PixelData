@@ -12,8 +12,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageContainerView: ImageContainerView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageWidth: NSLayoutConstraint!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var topRuler: RulerView!
     @IBOutlet weak var sideRuler: RulerView!
     @IBOutlet weak var gridView: GridView!
@@ -41,8 +39,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
 		
 		imageContainerView.imageView = imageView
-//		imageContainerView.imageWidth = imageWidth
-//		imageContainerView.imageHeight = imageHeight
 		
 		imageContainerView.delegate = self
         
@@ -248,6 +244,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 	}
 	
 	@IBAction func editModeButtonTouched(sender: UIButton) {
+		if imageContainerView.image == nil {
+			return;
+		}
+		
 		editingMode = !editingMode;
 		
 		sender.selected = editingMode

@@ -11,7 +11,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qv1-o5-E6x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -77,24 +77,26 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <items>
                                             <barButtonItem style="plain" id="e2T-Au-q4J">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ylv-OA-vtv">
-                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ylv-OA-vtv">
+                                                    <rect key="frame" x="20" y="7" width="70" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button">
+                                                    <state key="normal" backgroundImage="dark_gray">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <state key="selected" backgroundImage="dark_green"/>
                                                     <connections>
                                                         <action selector="themeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Qfh-ZC-o3j"/>
                                                     </connections>
                                                 </button>
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="Nu5-IQ-8FQ">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9bB-ZO-LXF">
-                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9bB-ZO-LXF">
+                                                    <rect key="frame" x="100" y="7" width="70" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button">
+                                                    <state key="normal" backgroundImage="light_gray">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <state key="selected" backgroundImage="light_green"/>
                                                     <connections>
                                                         <action selector="themeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d0K-px-0GZ"/>
                                                     </connections>
@@ -105,10 +107,10 @@
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RKk-b6-IGy">
                                                     <rect key="frame" x="239" y="7" width="140" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="realtime_mode_gray">
+                                                    <state key="normal" backgroundImage="realtime_gray">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" backgroundImage="realtime_mode"/>
+                                                    <state key="selected" backgroundImage="realtime_green"/>
                                                     <connections>
                                                         <action selector="modeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3bh-2N-O0K"/>
                                                     </connections>
@@ -118,10 +120,10 @@
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZpX-wX-0gH">
                                                     <rect key="frame" x="389" y="8" width="140" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="annotation_mode_gray">
+                                                    <state key="normal" backgroundImage="annotation_gray">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" backgroundImage="annotation_mode"/>
+                                                    <state key="selected" backgroundImage="annotation_green"/>
                                                     <connections>
                                                         <action selector="modeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SE0-Kk-BHF"/>
                                                     </connections>
@@ -129,14 +131,15 @@
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="vDO-sR-9lA"/>
                                             <barButtonItem style="plain" id="PfY-qd-qMT">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FQc-lM-eBW">
-                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FQc-lM-eBW">
+                                                    <rect key="frame" x="717" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="Edit">
+                                                    <state key="normal" backgroundImage="edit_normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <state key="selected" backgroundImage="edit_editing"/>
                                                     <connections>
                                                         <action selector="editModeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zhj-pt-9CO"/>
                                                     </connections>
@@ -203,10 +206,16 @@
     <resources>
         <image name="PhotoButton" width="24" height="24"/>
         <image name="ShareButton" width="24" height="24"/>
-        <image name="annotation_mode" width="140" height="26"/>
-        <image name="annotation_mode_gray" width="140" height="26"/>
-        <image name="realtime_mode" width="140" height="26"/>
-        <image name="realtime_mode_gray" width="140" height="26"/>
+        <image name="annotation_gray" width="140" height="30"/>
+        <image name="annotation_green" width="140" height="30"/>
+        <image name="dark_gray" width="70" height="30"/>
+        <image name="dark_green" width="70" height="30"/>
+        <image name="edit_editing" width="30" height="30"/>
+        <image name="edit_normal" width="30" height="30"/>
+        <image name="light_gray" width="70" height="30"/>
+        <image name="light_green" width="70" height="30"/>
+        <image name="realtime_gray" width="140" height="30"/>
+        <image name="realtime_green" width="140" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
