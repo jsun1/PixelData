@@ -23,10 +23,10 @@ class MeasurementView: OverlayView {
 				return
 			}
 			
-			jiggleRotationAngle = M_PI / (150 as Double * Double(zoomScale))
+			jiggleRotationAngle = M_PI / (100 as Double * Double(zoomScale))
 			
-			let point1 = CGPoint(x: point1InImage!.x * zoomScale, y: point1InImage!.y * zoomScale)
-			let point2 = CGPoint(x: point2InImage!.x * zoomScale, y: point2InImage!.y * zoomScale)
+			let point1 = CGPoint(x: point1InImage!.x * zoomScale - contentOffset.x, y: point1InImage!.y * zoomScale - contentOffset.y)
+			let point2 = CGPoint(x: point2InImage!.x * zoomScale - contentOffset.x, y: point2InImage!.y * zoomScale - contentOffset.y)
 			
 			let minX = min(point1.x, point2.x)
 			let maxX = max(point1.x, point2.x)
@@ -62,7 +62,9 @@ class MeasurementView: OverlayView {
 		deleteView.frame = CGRect(x: externalBoundsX/2, y: 0, width: deleteView.frame.width, height: deleteView.frame.height)
 	}
 	
-	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat) {
+	func setPoints(point1: CGPoint, point2: CGPoint, zoomScale: CGFloat, contentOffset: CGPoint) {
+		self.contentOffset = contentOffset
+		
 		// point1InImage is always the point with smaller x value
 		if point1.x < point2.x {
 			self.point1InImage = CGPoint(x: floor(point1.x/zoomScale), y: floor(point1.y/zoomScale))

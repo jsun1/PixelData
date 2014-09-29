@@ -23,7 +23,7 @@ class ColorPinView: OverlayView {
 				return
 			}
 			
-			var positionInSuperview = CGPoint(x: (pointInImage!.x + 0.5) * zoomScale, y: (pointInImage!.y + 0.5) * zoomScale)
+			var positionInSuperview = CGPoint(x: (pointInImage!.x + 0.5) * zoomScale - contentOffset.x, y: (pointInImage!.y + 0.5) * zoomScale - contentOffset.y)
 			positionInSuperview.x -= frameWidth / 2
 			positionInSuperview.y -= frameHeight - 20
 			frame = CGRect(x: positionInSuperview.x, y: positionInSuperview.y, width: frameWidth, height: frameHeight)
@@ -54,7 +54,8 @@ class ColorPinView: OverlayView {
 	func initPinView() {
 	}
 	
-	func setPoint(point: CGPoint, zoomScale: CGFloat) {
+	func setPoint(point: CGPoint, zoomScale: CGFloat, contentOffset: CGPoint) {
+		self.contentOffset = contentOffset
 		pointInImage = CGPoint(x: floor(point.x/zoomScale), y: floor(point.y/zoomScale))
 		self.zoomScale = zoomScale
 	}

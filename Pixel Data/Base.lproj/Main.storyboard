@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="srZ-Rg-Be4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="srZ-Rg-Be4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -11,8 +11,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qv1-o5-E6x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -28,7 +29,7 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
@@ -75,43 +76,74 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <items>
-                                            <barButtonItem style="plain" id="Cet-MG-qlw">
-                                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="rdt-io-nXO">
-                                                    <rect key="frame" x="20" y="7" width="150" height="30"/>
+                                            <barButtonItem style="plain" id="e2T-Au-q4J">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ylv-OA-vtv">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="Dark"/>
-                                                        <segment title="Light"/>
-                                                    </segments>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="themeChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="o8R-9Q-Tlw"/>
+                                                        <action selector="themeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Qfh-ZC-o3j"/>
                                                     </connections>
-                                                </segmentedControl>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="Nu5-IQ-8FQ">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9bB-ZO-LXF">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="themeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d0K-px-0GZ"/>
+                                                    </connections>
+                                                </button>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Zjc-wx-BPQ"/>
-                                            <barButtonItem width="200" style="plain" id="SwC-Ft-1ap">
-                                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Ab1-bD-ebq">
-                                                    <rect key="frame" x="200" y="7" width="200" height="30"/>
+                                            <barButtonItem style="plain" id="y10-9Q-DNg">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RKk-b6-IGy">
+                                                    <rect key="frame" x="239" y="7" width="140" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="Freestyle"/>
-                                                        <segment title="Annotation"/>
-                                                    </segments>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="realtime_mode_gray">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" backgroundImage="realtime_mode"/>
                                                     <connections>
-                                                        <action selector="modeChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="WoS-75-cX9"/>
+                                                        <action selector="modeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3bh-2N-O0K"/>
                                                     </connections>
-                                                </segmentedControl>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="NlQ-HA-DZK">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZpX-wX-0gH">
+                                                    <rect key="frame" x="389" y="8" width="140" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" backgroundImage="annotation_mode_gray">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" backgroundImage="annotation_mode"/>
+                                                    <connections>
+                                                        <action selector="modeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SE0-Kk-BHF"/>
+                                                    </connections>
+                                                </button>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="vDO-sR-9lA"/>
-                                            <barButtonItem systemItem="edit" id="Tdj-Xw-ZWs">
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="toggleEditMode:" destination="vXZ-lx-hvc" id="aj7-vd-Lnm"/>
-                                                </connections>
+                                            <barButtonItem style="plain" id="PfY-qd-qMT">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FQc-lM-eBW">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Edit">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="editModeButtonTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zhj-pt-9CO"/>
+                                                    </connections>
+                                                </button>
                                             </barButtonItem>
                                         </items>
+                                        <color key="barTintColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
                                     </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -121,24 +153,28 @@
                     </view>
                     <navigationItem key="navigationItem" title="Pixel Data" id="s9T-ua-6lY">
                         <barButtonItem key="leftBarButtonItem" image="PhotoButton" id="YMW-9d-yR6">
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cameraPressed:" destination="vXZ-lx-hvc" id="LH3-Le-zxY"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ShareButton" id="WsX-le-RZ5">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="sharePressed:" destination="vXZ-lx-hvc" id="OeW-wB-cKf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="editButton" destination="SwC-Ft-1ap" id="cF2-g0-K6F"/>
+                        <outlet property="annotationModeButton" destination="ZpX-wX-0gH" id="dpA-KP-si0"/>
                         <outlet property="cameraButton" destination="YMW-9d-yR6" id="qGe-2P-ye6"/>
+                        <outlet property="darkThemeButton" destination="ylv-OA-vtv" id="qnW-ta-INi"/>
+                        <outlet property="editButton" destination="FQc-lM-eBW" id="uZv-21-CsT"/>
                         <outlet property="gridView" destination="abk-gt-261" id="O9T-II-V13"/>
                         <outlet property="imageContainerView" destination="lgm-xL-jFW" id="2mj-AT-cbM"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
+                        <outlet property="lightThemeButton" destination="9bB-ZO-LXF" id="HfG-Qj-GG7"/>
+                        <outlet property="realtimeModeButton" destination="RKk-b6-IGy" id="xba-IE-Mg1"/>
                         <outlet property="sideRuler" destination="O3I-jL-Cd8" id="cfb-sv-eJg"/>
                         <outlet property="toolBar" destination="6m1-4j-4Su" id="EVR-yv-4Vz"/>
                         <outlet property="topRuler" destination="lEI-pE-6nE" id="0Xi-WB-g5b"/>
@@ -167,6 +203,10 @@
     <resources>
         <image name="PhotoButton" width="24" height="24"/>
         <image name="ShareButton" width="24" height="24"/>
+        <image name="annotation_mode" width="140" height="26"/>
+        <image name="annotation_mode_gray" width="140" height="26"/>
+        <image name="realtime_mode" width="140" height="26"/>
+        <image name="realtime_mode_gray" width="140" height="26"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -18,15 +18,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var sideRuler: RulerView!
     @IBOutlet weak var gridView: GridView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-	@IBOutlet weak var editButton: UIBarButtonItem!
+	@IBOutlet weak var editButton: UIButton!
+	
+	
+	@IBOutlet weak var darkThemeButton: UIButton!
+	@IBOutlet weak var lightThemeButton: UIButton!
+	
+	@IBOutlet weak var realtimeModeButton: UIButton!
+	@IBOutlet weak var annotationModeButton: UIButton!
 	
 	var editingMode: Bool = false {
 		didSet {
-			if editing {
-				editButton.style = .Plain
-			} else {
-				editButton.style = .Done
-			}
+			editButton.selected = editingMode;
 			
 			imageContainerView.editMode = editingMode
 		}
@@ -88,6 +91,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.topRuler.offset = scrollView.contentOffset
         self.sideRuler.offset = scrollView.contentOffset
         self.gridView.offset = scrollView.contentOffset
+		imageContainerView.redrawOverlays()
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
@@ -210,26 +214,42 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 		}
 	}
 	
-	@IBAction func themeChanged(sender: UISegmentedControl) {
-		if sender.selectedSegmentIndex == 0 {
+	@IBAction func themeButtonTouched(sender: UIButton) {
+		sender.selected = true
+		if sender == darkThemeButton {
+			lightThemeButton.selected = false
 			imageContainerView.theme = Theme.Dark
 		} else {
+			darkThemeButton.selected = false
 			imageContainerView.theme = Theme.Light
 		}
 	}
 	
-	@IBAction func modeChanged(sender: UISegmentedControl) {
-		if sender.selectedSegmentIndex == 0 {
-			imageContainerView.mode = Mode.Freestyle
-		} else {
-			imageContainerView.mode = Mode.Annotation
+	
+	@IBAction func modeButtonTouched(sender: UIButton) {
+		sender.selected = true
+		
+		if sender == realtimeModeButton {
+			annotationModeButton.selected = false
+			
+			if imageContainerView.mode == Mode.Annotation {
+				imageContainerView.mode = Mode.Realtime
+			}
+		} else if sender == annotationModeButton {
+			realtimeModeButton.selected = false
+			
+			if imageContainerView.mode == Mode.Realtime {
+				imageContainerView.mode = Mode.Annotation
+			}
 		}
 		
 		editingMode = false
 	}
 	
-	@IBAction func toggleEditMode(sender: UIBarButtonItem) {
+	@IBAction func editModeButtonTouched(sender: UIButton) {
 		editingMode = !editingMode;
+		
+		sender.selected = editingMode
 	}
 }
 

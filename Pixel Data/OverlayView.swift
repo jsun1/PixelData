@@ -22,10 +22,13 @@ class OverlayView: UIView {
 	
 	var zoomScale: CGFloat = CGFloat()
 	
+	var contentOffset = CGPoint(x: 0, y: 0)
+	
 	var jiggleRotationAngle = M_PI/60
 	
 	var editMode: Bool = false {
 		didSet {
+			self.userInteractionEnabled = editMode
 			deleteView.hidden = !editMode
 			jiggle(editMode)
 		}

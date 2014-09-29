@@ -9,7 +9,7 @@
 import UIKit
 
 enum Mode {
-	case Freestyle,	Annotation
+	case Realtime, Annotation
 }
 
 enum Theme {
@@ -26,8 +26,8 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	//var imageWidth: NSLayoutConstraint!
 	//var imageHeight: NSLayoutConstraint!
 	
-	var colorPinView: ColorPinView!
-	var measurementView: MeasurementView!
+	var colorPinView: ColorPinView?
+	var measurementView: MeasurementView?
 	
 	var overlayViews = [OverlayView]()
 	
@@ -37,12 +37,17 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 				view.editMode = editMode
 			}
 			
-			measurementView.editMode = editMode
-			colorPinView.editMode = editMode
+			if measurementView != nil {
+				measurementView!.editMode = editMode
+			}
+			
+			if colorPinView != nil {
+				colorPinView!.editMode = editMode
+			}
 		}
 	}
 	
-	var mode: Mode = Mode.Freestyle {
+	var mode: Mode = Mode.Realtime {
 		didSet {
 			clearWorkspace()
 		}
@@ -70,8 +75,6 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	}
 	
 	func initImageContainer() {
-		measurementView = createMeasurementView()
-		colorPinView = createColorPinView()
 	}
 	
 	// TODO generic constructor?
@@ -84,7 +87,7 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	func createMeasurementView() -> MeasurementView {
 		let view = MeasurementView()
 		view.hidden = true
-		self.addSubview(view)
+		self.superview!.addSubview(view)
 		
 		// TODO remove when traceColor and fontColor are class variables
 		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
@@ -99,7 +102,7 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	func createColorPinView() -> ColorPinView {
 		let view = ColorPinView()
 		view.hidden = true
-		self.addSubview(view)
+		self.superview!.addSubview(view)
 		
 		// TODO remove when traceColor and fontColor are class variables
 		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
@@ -117,16 +120,26 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 		}
 		overlayViews.removeAll(keepCapacity: false)
 		
-		measurementView.hidden = true
-		colorPinView.hidden = true
+		if measurementView != nil {
+			measurementView!.hidden = true
+		}
+		
+		if colorPinView != nil {
+			colorPinView!.hidden = true
+		}
 	}
 	
 	func updateColors() {
 		let traceColor = theme == .Dark ? UIColor.blackColor() : UIColor.whiteColor()
 		let fontColor = theme == .Dark ? UIColor.whiteColor() : UIColor.blackColor()
 		
-		measurementView.setColors(traceColor: traceColor, fontColor: fontColor)
-		colorPinView.setColors(traceColor: traceColor, fontColor: fontColor)
+		if measurementView != nil {
+			measurementView!.setColors(traceColor: traceColor, fontColor: fontColor)
+		}
+		
+		if colorPinView != nil {
+			colorPinView!.setColors(traceColor: traceColor, fontColor: fontColor)
+		}
 		
 		for view in overlayViews {
 			view.setColors(traceColor: traceColor, fontColor: fontColor)
@@ -134,13 +147,27 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	}
 	
 	func redrawOverlays() {
+		var offset = contentOffset
+		offset.x -= frame.origin.x
+		offset.y -= frame.origin.y
+		
 		for view in overlayViews {
+			view.contentOffset = offset
 			view.zoomScale = zoomScale
 		}
 		
 		// TODO why?
-		(measurementView as OverlayView).zoomScale = zoomScale
-		(colorPinView as OverlayView).zoomScale = zoomScale
+		if measurementView != nil {
+			let overlayView = measurementView! as OverlayView;
+			overlayView.contentOffset = offset
+			overlayView.zoomScale = zoomScale
+		}
+		
+		if colorPinView != nil {
+			let overlayView = colorPinView! as OverlayView;
+			overlayView.contentOffset = offset
+			overlayView.zoomScale = zoomScale
+		}
 	}
 	
 	func setImage(image: UIImage) {
@@ -174,47 +201,61 @@ class ImageContainerView: UIScrollView, OverlayViewDelegate {
 	//MARK: Measurement view
 	
 	func showMeasurementView(var #touch1Position: CGPoint, var touch2Position: CGPoint) {
+		if measurementView == nil {
+			measurementView = createMeasurementView()
+		}
+		
 		touch1Position.y -= overlayViewsOffset
 		touch2Position.y -= overlayViewsOffset
 		
-		measurementView.setPoints(touch1Position, point2: touch2Position, zoomScale: zoomScale)
-		measurementView.hidden = false
+		var offset = contentOffset
+		offset.x -= frame.origin.x
+		offset.y -= frame.origin.y
+		measurementView!.setPoints(touch1Position, point2: touch2Position, zoomScale: zoomScale, contentOffset: offset)
+		measurementView!.hidden = false
 		
-		measurementView.editMode = editMode
+		measurementView!.editMode = editMode
 	}
 	
 	func endShowingMeasurementView() {
 		switch mode {
-		case .Freestyle:
-			measurementView.hidden = true
+		case .Realtime:
+			measurementView!.hidden = true
 			
 		case .Annotation:
-			overlayViews.append(measurementView)
-			measurementView = createMeasurementView()
+			overlayViews.append(measurementView!)
+			measurementView = nil
 		}
 	}
 	
 	//MARK: Color pin
 	
 	func showColorPin(var touchPosition: CGPoint) {
+		if colorPinView == nil {
+			colorPinView = createColorPinView()
+		}
+		
 		touchPosition.y -= overlayViewsOffset
 		
-		colorPinView.setPoint(touchPosition, zoomScale: zoomScale)
-		colorPinView.pixelColor = colorAtPosition(colorPinView.getPointInImage()!)
+		var offset = contentOffset
+		offset.x -= frame.origin.x
+		offset.y -= frame.origin.y
+		colorPinView!.setPoint(touchPosition, zoomScale: zoomScale, contentOffset: offset)
+		colorPinView!.pixelColor = colorAtPosition(colorPinView!.getPointInImage()!)
 		
-		colorPinView.hidden = false
+		colorPinView!.hidden = false
 		
-		colorPinView.editMode = editMode
+		colorPinView!.editMode = editMode
 	}
 	
 	func endShowingColorPin() {
 		switch mode {
-		case .Freestyle:
-			colorPinView.hidden = true
+		case .Realtime:
+			colorPinView!.hidden = true
 			
 		case .Annotation:
-			overlayViews.append(colorPinView)
-			colorPinView = createColorPinView()
+			overlayViews.append(colorPinView!)
+			colorPinView = nil
 		}
 	}
 	

@@ -7,35 +7,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NTf-1V-uVV">
-                    <rect key="frame" x="0.0" y="436" width="480" height="44"/>
-                    <items/>
-                </toolbar>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M38-55-Xdu">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
-                </navigationBar>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6P2-gq-eal">
-                    <rect key="frame" x="0.0" y="20" width="480" height="44"/>
-                </navigationBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ipad_splash" translatesAutoresizingMaskIntoConstraints="NO" id="kQG-HZ-Q76">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="6P2-gq-eal" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="4g1-Rh-r9b"/>
-                <constraint firstItem="NTf-1V-uVV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FUN-hF-Ogc"/>
-                <constraint firstItem="M38-55-Xdu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JFD-S5-wuJ"/>
-                <constraint firstAttribute="trailing" secondItem="M38-55-Xdu" secondAttribute="trailing" id="WIq-gT-Yb1"/>
-                <constraint firstAttribute="trailing" secondItem="6P2-gq-eal" secondAttribute="trailing" id="Y9W-7d-OaF"/>
-                <constraint firstAttribute="bottom" secondItem="NTf-1V-uVV" secondAttribute="bottom" id="YOn-N5-URM"/>
-                <constraint firstItem="6P2-gq-eal" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="atn-q4-2co"/>
-                <constraint firstItem="M38-55-Xdu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gYK-bQ-iQk"/>
-                <constraint firstAttribute="trailing" secondItem="NTf-1V-uVV" secondAttribute="trailing" id="hx9-G4-sBv"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="ipad_splash" width="768" height="1024"/>
+    </resources>
 </document>

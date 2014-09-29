@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41058B5A19D8F5CF004E35E1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41058B5819D8F5CF004E35E1 /* LaunchScreen.xib */; };
 		410CDD1619D79EB90011D1EA /* MeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410CDD1519D79EB80011D1EA /* MeasurementView.swift */; };
 		411401C519D89B3A0086D16D /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411401C419D89B3A0086D16D /* DeleteView.swift */; };
 		411401C719D8A52D0086D16D /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411401C619D8A52D0086D16D /* OverlayView.swift */; };
@@ -19,7 +20,6 @@
 		9D95114419D4E688004B6709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D95114319D4E688004B6709 /* ViewController.swift */; };
 		9D95114719D4E688004B6709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D95114519D4E688004B6709 /* Main.storyboard */; };
 		9D95114919D4E688004B6709 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D95114819D4E688004B6709 /* Images.xcassets */; };
-		9D95114C19D4E688004B6709 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D95114A19D4E688004B6709 /* LaunchScreen.xib */; };
 		9D95115819D4E688004B6709 /* Pixel_DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D95115719D4E688004B6709 /* Pixel_DataTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41058B5919D8F5CF004E35E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		410CDD1519D79EB80011D1EA /* MeasurementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementView.swift; sourceTree = "<group>"; };
 		411401C419D89B3A0086D16D /* DeleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
 		411401C619D8A52D0086D16D /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		9D95114319D4E688004B6709 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9D95114619D4E688004B6709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D95114819D4E688004B6709 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9D95114B19D4E688004B6709 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9D95115119D4E688004B6709 /* Pixel DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pixel DataTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D95115619D4E688004B6709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D95115719D4E688004B6709 /* Pixel_DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel_DataTests.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 				9D95114319D4E688004B6709 /* ViewController.swift */,
 				9D95114519D4E688004B6709 /* Main.storyboard */,
 				9D95114819D4E688004B6709 /* Images.xcassets */,
-				9D95114A19D4E688004B6709 /* LaunchScreen.xib */,
+				41058B5819D8F5CF004E35E1 /* LaunchScreen.xib */,
 				9D95113F19D4E688004B6709 /* Supporting Files */,
 				417C0B3919D757420073D66A /* ImageContainerView.swift */,
 				411401C619D8A52D0086D16D /* OverlayView.swift */,
@@ -219,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D95114719D4E688004B6709 /* Main.storyboard in Resources */,
-				9D95114C19D4E688004B6709 /* LaunchScreen.xib in Resources */,
+				41058B5A19D8F5CF004E35E1 /* LaunchScreen.xib in Resources */,
 				9D95114919D4E688004B6709 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,20 +269,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		41058B5819D8F5CF004E35E1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41058B5919D8F5CF004E35E1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 		9D95114519D4E688004B6709 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9D95114619D4E688004B6709 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9D95114A19D4E688004B6709 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D95114B19D4E688004B6709 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -369,13 +369,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pixel Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -383,13 +384,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Pixel Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
