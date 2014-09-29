@@ -121,8 +121,11 @@ class ColorPinView: OverlayView {
 		
 		let attribs = [NSForegroundColorAttributeName: fontColor, NSFontAttributeName: UIFont.boldSystemFontOfSize(10)]
 		var text = NSAttributedString(string: intVal, attributes: attribs)
-		text.drawAtPoint(CGPointMake(48, 7))
-		text = NSAttributedString(string: hexVal, attributes: attribs)
-		text.drawAtPoint(CGPointMake(48, 32))
+        text.drawAtPoint(CGPointMake(48, 7))
+        text = NSAttributedString(string: hexVal, attributes: attribs)
+        if pointInImage != nil {
+            text = NSAttributedString(string: String(format: "(%d, %d)", Int(pointInImage!.x), Int(pointInImage!.y)), attributes: attribs)
+        }
+        text.drawAtPoint(CGPointMake(48, 32))
 	}
 }
