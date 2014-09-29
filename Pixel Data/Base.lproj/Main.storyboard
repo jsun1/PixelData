@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="srZ-Rg-Be4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -13,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -22,108 +21,69 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0E-36-6cN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-368" y="387"/>
+            <point key="canvasLocation" x="-471.04000000000002" y="660.48000000000002"/>
         </scene>
         <!--Pixel Data-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" customModule="Pixel_Data" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="580" height="472"/>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" id="lgm-xL-jFW" customClass="ImageContainerView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="748" height="896"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oFa-pW-PVa">
-                                        <constraints>
-                                            <constraint firstAttribute="width" id="jBE-kj-1hV"/>
-                                            <constraint firstAttribute="height" id="ttN-YE-wpC"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oFa-pW-PVa">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="6wc-Ok-cIV"/>
-                                    <constraint firstAttribute="centerY" secondItem="oFa-pW-PVa" secondAttribute="centerY" constant="300" id="G8d-KP-DTy"/>
-                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" id="Hyc-iR-YLb"/>
-                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" id="O9t-zw-fqS"/>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="Rpr-60-pUK"/>
-                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" constant="600" id="WLD-a2-LBK"/>
-                                    <constraint firstAttribute="centerX" secondItem="oFa-pW-PVa" secondAttribute="centerX" constant="300" id="XtJ-Fa-bEW"/>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="bHa-8h-TpX"/>
-                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" constant="600" id="bTU-vi-4uZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="oFa-pW-PVa" secondAttribute="trailing" id="cHe-NR-xNl"/>
-                                    <constraint firstAttribute="bottom" secondItem="oFa-pW-PVa" secondAttribute="bottom" id="cSM-LJ-Wte"/>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="fyJ-np-UOi"/>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="rc3-Vg-GW5"/>
-                                    <constraint firstItem="oFa-pW-PVa" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="yc1-Nb-hOV"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="6wc-Ok-cIV"/>
-                                        <exclude reference="G8d-KP-DTy"/>
-                                        <exclude reference="Hyc-iR-YLb"/>
-                                        <exclude reference="O9t-zw-fqS"/>
-                                        <exclude reference="XtJ-Fa-bEW"/>
-                                        <exclude reference="cHe-NR-xNl"/>
-                                        <exclude reference="cSM-LJ-Wte"/>
-                                        <exclude reference="fyJ-np-UOi"/>
-                                        <exclude reference="rc3-Vg-GW5"/>
-                                        <exclude reference="yc1-Nb-hOV"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="vg9-FO-VcX" appends="YES" id="O4q-Oc-nWW"/>
                                     <outletCollection property="gestureRecognizers" destination="T2G-fi-FC4" appends="YES" id="SN7-lr-wi3"/>
                                     <outletCollection property="gestureRecognizers" destination="XfD-ho-4w9" appends="YES" id="q9e-YK-oA2"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCO-Hb-OOv">
+                            <view contentMode="scaleToFill" id="ZCO-Hb-OOv">
                                 <rect key="frame" x="0.0" y="64" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="eLM-Gu-zf5"/>
-                                    <constraint firstAttribute="width" constant="20" id="l7O-Kg-YiO"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEI-pE-6nE" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="20" y="64" width="580" height="20"/>
+                            <view contentMode="scaleToFill" id="lEI-pE-6nE" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="20" y="64" width="748" height="20"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="8Pa-Uv-4mq"/>
-                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3I-jL-Cd8" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="20" height="472"/>
+                            <view contentMode="scaleToFill" id="O3I-jL-Cd8" customClass="RulerView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="84" width="20" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="9eU-mL-zaG"/>
-                                </constraints>
                             </view>
-                            <view opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abk-gt-261" customClass="GridView" customModule="Pixel_Data" customModuleProvider="target">
-                                <rect key="frame" x="20" y="84" width="580" height="472"/>
+                            <view opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="abk-gt-261" customClass="GridView" customModule="Pixel_Data" customModuleProvider="target">
+                                <rect key="frame" x="20" y="84" width="748" height="896"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5v2-pZ-YLI">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                            <view opaque="NO" contentMode="scaleToFill" id="5v2-pZ-YLI">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m1-4j-4Su">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6m1-4j-4Su">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <items>
                                             <barButtonItem style="plain" id="Cet-MG-qlw">
                                                 <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="rdt-io-nXO">
-                                                    <rect key="frame" x="16" y="7" width="90" height="30"/>
+                                                    <rect key="frame" x="20" y="7" width="150" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <segments>
                                                         <segment title="Dark"/>
                                                         <segment title="Light"/>
                                                     </segments>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <connections>
                                                         <action selector="themeChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="o8R-9Q-Tlw"/>
                                                     </connections>
@@ -138,6 +98,7 @@
                                                         <segment title="Freestyle"/>
                                                         <segment title="Annotation"/>
                                                     </segments>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <connections>
                                                         <action selector="modeChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="WoS-75-cX9"/>
                                                     </connections>
@@ -145,6 +106,7 @@
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="vDO-sR-9lA"/>
                                             <barButtonItem systemItem="edit" id="Tdj-Xw-ZWs">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="toggleEditMode:" destination="vXZ-lx-hvc" id="aj7-vd-Lnm"/>
                                                 </connections>
@@ -153,64 +115,9 @@
                                     </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="6m1-4j-4Su" firstAttribute="leading" secondItem="5v2-pZ-YLI" secondAttribute="leading" id="5gO-Lc-XAn"/>
-                                    <constraint firstItem="6m1-4j-4Su" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="top" id="8kq-ut-4pd"/>
-                                    <constraint firstAttribute="trailing" secondItem="6m1-4j-4Su" secondAttribute="trailing" id="RIT-oB-fNm"/>
-                                    <constraint firstAttribute="bottom" secondItem="6m1-4j-4Su" secondAttribute="bottom" id="omj-Kd-IE9"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="20" id="4Kh-8Z-scj"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="58V-oM-mh1"/>
-                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="ZCO-Hb-OOv" secondAttribute="trailing" id="5TT-HI-utk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lEI-pE-6nE" secondAttribute="trailing" constant="-16" id="9aF-Ab-95j"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="9qp-wo-end"/>
-                            <constraint firstItem="abk-gt-261" firstAttribute="leading" secondItem="lgm-xL-jFW" secondAttribute="leading" id="BzP-us-1vL"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="O3I-jL-Cd8" secondAttribute="trailing" id="DHY-Br-GvQ"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="lEI-pE-6nE" secondAttribute="bottom" id="Ddn-jF-NeD"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="G6S-Nu-rbv"/>
-                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="HBz-pN-ob0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="Id7-is-9LI"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5v2-pZ-YLI" secondAttribute="bottom" id="MmM-hr-HVx"/>
-                            <constraint firstItem="ZCO-Hb-OOv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="OFh-81-MJP"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="lEI-pE-6nE" secondAttribute="bottom" constant="-88" id="Ozb-1w-hlh"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="QoB-J4-Ge6"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="top" secondItem="ZCO-Hb-OOv" secondAttribute="bottom" id="UGJ-BP-mhU"/>
-                            <constraint firstItem="abk-gt-261" firstAttribute="trailing" secondItem="lgm-xL-jFW" secondAttribute="trailing" id="UaD-jW-aLi"/>
-                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="V0o-bs-gd5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lgm-xL-jFW" secondAttribute="trailing" constant="-16" id="Vm5-ff-5oV"/>
-                            <constraint firstItem="ZCO-Hb-OOv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Vq7-rG-dqS"/>
-                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="4" id="ZTN-KU-6QG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5v2-pZ-YLI" secondAttribute="trailing" constant="-16" id="dfO-OE-WFZ"/>
-                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jOu-Gy-rHE"/>
-                            <constraint firstItem="abk-gt-261" firstAttribute="top" secondItem="lgm-xL-jFW" secondAttribute="top" id="k1l-PK-8cM"/>
-                            <constraint firstItem="lEI-pE-6nE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kHZ-SW-r01"/>
-                            <constraint firstItem="5v2-pZ-YLI" firstAttribute="top" secondItem="O3I-jL-Cd8" secondAttribute="bottom" id="kMc-jU-PcT"/>
-                            <constraint firstItem="O3I-jL-Cd8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="ocs-OO-RpA"/>
-                            <constraint firstItem="lEI-pE-6nE" firstAttribute="leading" secondItem="ZCO-Hb-OOv" secondAttribute="trailing" id="qeK-6K-J1w"/>
-                            <constraint firstItem="abk-gt-261" firstAttribute="bottom" secondItem="lgm-xL-jFW" secondAttribute="bottom" id="r2E-lV-zwx"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="sT7-MJ-MOf"/>
-                            <constraint firstItem="lgm-xL-jFW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-64" id="tYd-Fc-rAZ"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="V0o-bs-gd5"/>
-                                <exclude reference="ZTN-KU-6QG"/>
-                                <exclude reference="qeK-6K-J1w"/>
-                                <exclude reference="9qp-wo-end"/>
-                                <exclude reference="G6S-Nu-rbv"/>
-                                <exclude reference="ocs-OO-RpA"/>
-                                <exclude reference="4Kh-8Z-scj"/>
-                                <exclude reference="Ozb-1w-hlh"/>
-                                <exclude reference="sT7-MJ-MOf"/>
-                                <exclude reference="tYd-Fc-rAZ"/>
-                                <exclude reference="Id7-is-9LI"/>
-                                <exclude reference="QoB-J4-Ge6"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Pixel Data" id="s9T-ua-6lY">
                         <barButtonItem key="leftBarButtonItem" image="PhotoButton" id="YMW-9d-yR6">
@@ -230,36 +137,39 @@
                         <outlet property="editButton" destination="SwC-Ft-1ap" id="cF2-g0-K6F"/>
                         <outlet property="gridView" destination="abk-gt-261" id="O9T-II-V13"/>
                         <outlet property="imageContainerView" destination="lgm-xL-jFW" id="2mj-AT-cbM"/>
-                        <outlet property="imageHeight" destination="ttN-YE-wpC" id="05a-8U-Zvz"/>
                         <outlet property="imageView" destination="oFa-pW-PVa" id="Yuv-jC-SMg"/>
-                        <outlet property="imageWidth" destination="jBE-kj-1hV" id="29l-po-2MV"/>
                         <outlet property="sideRuler" destination="O3I-jL-Cd8" id="cfb-sv-eJg"/>
                         <outlet property="toolBar" destination="6m1-4j-4Su" id="EVR-yv-4Vz"/>
                         <outlet property="topRuler" destination="lEI-pE-6nE" id="0Xi-WB-g5b"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vg9-FO-VcX">
-                    <connections>
-                        <action selector="longPressRecognized:" destination="vXZ-lx-hvc" id="Rfn-6M-OBR"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" numberOfTouchesRequired="2" id="T2G-fi-FC4">
                     <connections>
                         <action selector="longPress2FingersRecognized:" destination="vXZ-lx-hvc" id="jlF-la-oma"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vg9-FO-VcX">
+                    <connections>
+                        <action selector="longPressRecognized:" destination="vXZ-lx-hvc" id="Rfn-6M-OBR"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="XfD-ho-4w9">
                     <connections>
                         <action selector="doubleTapOnImageContainerRecognized:" destination="vXZ-lx-hvc" id="5dx-EM-stB"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="329" y="387"/>
+            <point key="canvasLocation" x="421.12" y="660.48000000000002"/>
         </scene>
     </scenes>
     <resources>
         <image name="PhotoButton" width="24" height="24"/>
         <image name="ShareButton" width="24" height="24"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>

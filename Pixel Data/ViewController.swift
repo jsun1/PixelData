@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, UIDocumentInteractionControllerDelegate, UIPopoverControllerDelegate {
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageContainerView: ImageContainerView!
     @IBOutlet weak var imageView: UIImageView!
@@ -35,19 +35,34 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
 		
 		imageContainerView.imageView = imageView
-		imageContainerView.imageWidth = imageWidth
-		imageContainerView.imageHeight = imageHeight
+//		imageContainerView.imageWidth = imageWidth
+//		imageContainerView.imageHeight = imageHeight
 		
 		imageContainerView.delegate = self
         
         self.imageView.layer.magnificationFilter = kCAFilterNearest
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+            self.cameraPressed(self.cameraButton)
+        }
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        if (self.gridView.hasImage) {
+            self.imageContainerView.reZoom()
+        }
+    }
+    
+    
     //MARK: Delegates
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.popover!.dismissPopoverAnimated(true)
         picker.dismissViewControllerAnimated(true, completion: nil)
-		imageContainerView.setImage(image)
+		self.imageContainerView.setImage(image)
 		
 		self.topRuler.hasImage = true
 		self.sideRuler.hasImage = true
@@ -55,6 +70,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.gridView.size = image.size
     }
 	
+    func popoverControllerDidDismissPopover(popoverController: UIPopoverController) {
+        self.popover = nil
+    }
 	
 	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
 		return imageView
@@ -86,22 +104,70 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
         imagePicker.allowsEditing = false
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        if (UIDevice.currentDevice().userInterfaceIdiom != .Pad) {
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        } else {
+            if ((self.popover) != nil) {
+                if (self.popover!.popoverVisible) {
+                    self.popover!.dismissPopoverAnimated(true)
+                    self.popover = nil;
+                    return;
+                }
+                self.popover = nil;
+            }
+            var newPopover = UIPopoverController(contentViewController: imagePicker)
+            newPopover.delegate = self;
+            self.popover = newPopover;
+            self.popover!.presentPopoverFromBarButtonItem(sender!, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+        }
     }
     
 
     @IBAction func sharePressed(sender: UIBarButtonItem) {
-        let imagePath: NSString = NSHomeDirectory().stringByAppendingPathComponent("screenshot.jpg")
-        UIImageJPEGRepresentation(imageContainerView.image, 0.95)
-        let imageURL: NSURL = NSURL(string: NSString(format: "file://%@", imagePath))
+        // Returns screen dimensions for the device
+        //let screenDimensions: CGSize  = UIScreen.mainScreen().applicationFrame.size
+        //println(screenDimensions)
         
-//        var dic = UIDocumentInteractionController(URL: imageURL)
-//        dic.delegate = self;
-//        dic .presentOptionsMenuFromBarButtonItem(sender, animated: true)
+        let layer = UIApplication.sharedApplication().keyWindow.layer
+        let scale = UIScreen.mainScreen().scale
         
-        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [imageURL], applicationActivities: nil)
-        self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
-    
+        //layer.frame.size.height -= (self.navigationController?.navigationBar.frame.size.height)!
+        //layer.frame.size.height -= toolBar.frame.size.height
+        println(self.navigationController?.navigationBar.frame.size.height)
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+        
+        
+        layer.renderInContext(UIGraphicsGetCurrentContext())
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        //save in Photo Album for testing
+        //UIImageWriteToSavedPhotosAlbum(screenshot, nil, nil, nil)
+        
+        
+        
+        // Share the screenshot
+        let activityViewController = UIActivityViewController(activityItems: [screenshot], applicationActivities: nil)
+        // Exclude few sharing options
+        activityViewController.excludedActivityTypes = [UIActivityTypeAssignToContact, UIActivityTypeAddToReadingList,
+            UIActivityTypePostToVimeo
+        ]
+        if (UIDevice.currentDevice().userInterfaceIdiom != .Pad) {
+            self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+        } else {
+            if ((self.popover) != nil) {
+                if (self.popover!.popoverVisible) {
+                    self.popover!.dismissPopoverAnimated(true)
+                    self.popover = nil;
+                    return;
+                }
+                self.popover = nil;
+            }
+            var newPopover = UIPopoverController(contentViewController: activityViewController)
+            newPopover.delegate = self;
+            self.popover = newPopover;
+            self.popover!.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+        }
 
     }
 	
